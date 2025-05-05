@@ -8,7 +8,7 @@ const Hero = () => {
       {/* Section 1: Welcome with vinyl-player background */}
       <section
         className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-center px-4"
-        style={{ backgroundImage: `url(/vinyl-player.png)` }}
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}vinyl-player.png)` }}
       >
 
         <motion.div
@@ -35,7 +35,7 @@ const Hero = () => {
       {/* Section 2: Bio section with vinyl background, static */}
       <section
         className="min-h-screen bg-cover bg-center flex items-center justify-center px-6 md:px-20"
-        style={{ backgroundImage: `url(/vinyl.png)` }}
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}vinyl.png)` }}
       >
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -45,7 +45,7 @@ const Hero = () => {
           className="bg-white bg-opacity-60 rounded-xl p-8 md:p-10 shadow-2xl max-w-5xl w-full flex flex-col md:flex-row items-center gap-10"
         >
           <img
-            src="/me.jpg"
+            src={`${import.meta.env.BASE_URL}me.jpg`}
             alt="Shruti Tokekar"
             className="w-52 h-52 md:w-60 md:h-60 rounded-full object-cover shadow-lg"
           />
