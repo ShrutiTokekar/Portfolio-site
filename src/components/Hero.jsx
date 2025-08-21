@@ -8,7 +8,7 @@ const Hero = () => {
       {/* Section 1: Welcome with vinyl-player background */}
       <section
         className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-center px-4"
-        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}vinyl-player.png)` }}
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}background.jpeg)` }}
       >
 
         <motion.div
@@ -32,10 +32,10 @@ const Hero = () => {
         </motion.div>
       </section>
 
-      {/* Section 2: Bio section with vinyl background, static */}
+      {/* Section 2: Bio section static */}
       <section
         className="min-h-screen bg-cover bg-center flex items-center justify-center px-6 md:px-20"
-        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}vinyl.png)` }}
+        style={{ backgroundColor: 'lavender' }}
       >
         <motion.div
           initial={{ opacity: 0, y: 40 }}
