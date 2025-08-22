@@ -19,8 +19,8 @@ body {
 
 /* Default (light mode) */
 body.light {
-  background-color: #ffffff;
-  color: #213547;
+  background-color: #e0d5eb;
+  color: #8A7BB8;
 }
 body.light a {
   color: #646cff;
@@ -29,14 +29,14 @@ body.light a:hover {
   color: #747bff;
 }
 body.light button {
-  background-color: #f9f9f9;
-  color: #213547;
+  background-color: #e0d5eb;
+  color:#8A7BB8;
 }
 
 /* Dark mode */
 body.dark {
-  background-color: #121212;
-  color: #eaeaea;
+  background-color: #8A7BB8;
+  color:  #e0d5eb;
 }
 body.dark a {
   color: #9d9dff;
@@ -45,8 +45,8 @@ body.dark a:hover {
   color: #b0b0ff;
 }
 body.dark button {
-  background-color: #333333;
-  color: #eaeaea;
+  background-color: #8A7BB8;
+  color: #e0d5eb;
 }
 body.dark button:hover {
   border-color: #9d9dff;
