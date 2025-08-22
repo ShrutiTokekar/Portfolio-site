@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import backgroundImage from './assets/background.jpeg';
+import backgroundImage from './assets/background.jpg';
 import meImage from './assets/me.jpg';
 
 const Hero = () => {
