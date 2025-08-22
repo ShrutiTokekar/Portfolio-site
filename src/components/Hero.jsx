@@ -37,7 +37,7 @@ const Hero = () => {
       {/* Section 2: Bio section static */}
       <section
         className="min-h-screen bg-cover bg-center flex items-center justify-center px-6 md:px-20"
-        style={{ backgroundColor: 'lavender' }}
+        style={{ backgroundColor: 'C4B7EB' }}
       >
         <motion.div
           initial={{ opacity: 0, y: 40 }}
