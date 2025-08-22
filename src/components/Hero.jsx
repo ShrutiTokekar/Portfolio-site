@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import backgroundImage from '../assets/background.jpeg';
+import meImage from '../assets/me.jpg';
 
 const Hero = () => {
   return (
@@ -8,7 +10,7 @@ const Hero = () => {
       {/* Section 1: Welcome with background */}
       <section
         className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-center px-4"
-        style={{ backgroundImage: `url(../assets/background.jpeg)` }}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
       >
 
         <motion.div
@@ -45,7 +47,7 @@ const Hero = () => {
           className="bg-white bg-opacity-60 rounded-xl p-8 md:p-10 shadow-2xl max-w-5xl w-full flex flex-col md:flex-row items-center gap-10"
         >
           <img
-            src={`${import.meta.env.BASE_URL}me.jpg`}
+            src={meImage}
             alt="Shruti Tokekar"
             className="w-52 h-52 md:w-60 md:h-60 rounded-full object-cover shadow-lg"
           />
