@@ -1,6 +1,11 @@
 import React from 'react';
 
 const Navbar = ({ theme, setTheme }) => {
+  const linkClass =
+    theme === "light"
+      ? "text-gray-800 hover:text-blue-600"
+      : "text-white hover:text-blue-300";
+
   return (
     <nav className="bg-black-600 p-4 flex justify-between items-center">
   
