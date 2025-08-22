@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Logo from './assets/logo.jpeg'
 //import 'animate.css';
 import React from "react";
@@ -12,13 +12,31 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 function App() {
+  const [theme, setTheme] = useState("light");
+
+  // Load saved preference or system default
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark");
+    }
+  }, []);
+
+  // Apply theme to body + save
+  useEffect(() => {
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <Router>
       <div className="App">
-        {/* Navbar */}
-        <Navbar />
+        {/* Navbar with theme toggle button */}
+        <Navbar theme={theme} setTheme={setTheme} />
 
-        {/* Routes for different pages */}
+        {/* Routes */}
         <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/about" element={<About />} />
