@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div className="text-white overflow-x-hidden">
-      {/* Section 1: Welcome with vinyl-player background */}
+      {/* Section 1: Welcome with background */}
       <section
         className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-center px-4"
-        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}background.jpeg)` }}
+        style={{ backgroundImage: `url(../assets/background.jpeg)` }}
       >
 
         <motion.div
