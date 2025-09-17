@@ -19,10 +19,10 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4" style= {{color: #7d528b}}>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4" style= {{color: '#7d528b'}}>
             Welcome to My Portfolio
           </h1>
-          <p className="text-lg md:text-xl max-w-xl mx-auto mb-6" style= {{color: #7d528b}}>
+          <p className="text-lg md:text-xl max-w-xl mx-auto mb-6" style= {{color: '#7d528b'}}>
             A creative showcase of my projects, passions, and journey in tech.
           </p>
           <Link
