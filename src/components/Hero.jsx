@@ -19,10 +19,10 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <h1 className=" darkpurpleColor text-4xl md:text-6xl font-bold mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4" style= {color: #7d528b}>
             Welcome to My Portfolio
           </h1>
-          <p className="mediumPurpleColor text-lg md:text-xl max-w-xl mx-auto mb-6">
+          <p className="text-lg md:text-xl max-w-xl mx-auto mb-6" style= {color: #7d528b}>
             A creative showcase of my projects, passions, and journey in tech.
           </p>
           <Link
@@ -53,7 +53,7 @@ const Hero = () => {
           />
           <div className="text-black text-center md:text-left">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">Hi, I'm Shruti Tokekar</h2>
-            <p className="text-purple-100 text-md md:text-lg text-gray-700">
+            <p className="text-purple-200 text-md md:text-lg text-gray-700">
               I'm a passionate software developer with experience in full-stack development,
               creative design, and data-driven projects. I love building expressive, functional
               tools that bring joy and impact to real users.
