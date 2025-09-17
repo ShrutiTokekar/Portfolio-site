@@ -5,8 +5,8 @@ const cardData = [
   {
     title: "🧠 Skills",
     content: [
-      "JavaScript, React, Node.js",
-      "C++, Python, Java",
+      "JavaScript, React, Node.js, Next.js",
+      "C++, C, C#, Python, Java",
       "SQL, MySQL, MongoDB",
       "Version Control (Git, GitHub)",
       "Linux, Docker, Kubernetes",
@@ -30,7 +30,6 @@ const cardData = [
     content: [
       "Computer Programming Certificate",
       "Visual Arts Certificate",
-      "AWS Cloud Practitioner (in progress)",
     ],
   },
 ];
