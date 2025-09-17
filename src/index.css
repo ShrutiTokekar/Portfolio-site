@@ -10,7 +10,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.darkpurpleColor{
+
+/*.darkpurpleColor{
    color: #7d528b
 }
 .lavenderColor{
@@ -19,6 +20,7 @@
 .mediumPurpleColor{
   color: #b0b0ff;
 }
+*/
 body {
   margin: 0;
   min-width: 320px;
