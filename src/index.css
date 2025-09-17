@@ -23,14 +23,17 @@ body.light {
   color: #8A7BB8;
 }
 body.light a {
-  color: #646cff;
+  color: #8A7BB8;
 }
 body.light a:hover {
   color: #747bff;
 }
 body.light button {
-  background-color: #e0d5eb;
-  color:#8A7BB8;
+  background-color: #8A7BB8;
+  color:#e0d5eb;
+}
+body.light button:hover {
+  border-color: #9d9dff;
 }
 
 /* Dark mode */
@@ -39,7 +42,7 @@ body.dark {
   color:  #e0d5eb;
 }
 body.dark a {
-  color: #9d9dff;
+  color: #e0d5eb;
 }
 body.dark a:hover {
   color: #b0b0ff;
