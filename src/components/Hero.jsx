@@ -6,7 +6,7 @@ import meImage from '../assets/me.JPG';
 
 const Hero = () => {
   return (
-    <div className="text-purple-400 overflow-x-hidden">
+    <div className="overflow-x-hidden">
       {/* Section 1: Welcome with background */}
       <section
         className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-center px-4"
@@ -19,10 +19,10 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          <h1 className=" darkpurpleColor text-4xl md:text-6xl font-bold mb-4">
             Welcome to My Portfolio
           </h1>
-          <p className="text-lg md:text-xl text-purple-600 max-w-xl mx-auto mb-6">
+          <p className="mediumPurpleColor text-lg md:text-xl max-w-xl mx-auto mb-6">
             A creative showcase of my projects, passions, and journey in tech.
           </p>
           <Link
@@ -37,7 +37,7 @@ const Hero = () => {
       {/* Section 2: Bio section static */}
       <section
         className="min-h-screen bg-cover bg-center flex items-center justify-center px-6 md:px-20"
-        style={{ backgroundColor: 'C4B7EB' }}
+        style={{ backgroundColor: 'e0d5eb' }}
       >
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -53,7 +53,7 @@ const Hero = () => {
           />
           <div className="text-black text-center md:text-left">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">Hi, I'm Shruti Tokekar</h2>
-            <p className="text-md md:text-lg text-gray-700">
+            <p className="text-purple-100 text-md md:text-lg text-gray-700">
               I'm a passionate software developer with experience in full-stack development,
               creative design, and data-driven projects. I love building expressive, functional
               tools that bring joy and impact to real users.
