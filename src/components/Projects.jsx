@@ -2,9 +2,9 @@ import React from "react";
 
 const projects = [
   {
-    name: "MoodBoard",
-    description: "AI-based moodboard generator using Spotify listening history, facial emotion detection, and journal sentiment analysis.",
-    techStack: ["Python", "Spotify API", "Machine Learning"],
+    name: "AI Powered Financial Assitant: Zenty",
+    description: "AI-powered expense tracker and financial advisor web app built with Next.js, TypeScript, and MongoDB, featuring personalized budgets, secure authentication, and a chatbot for real-time financial insights ",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
     link: "https://github.com/YOUR_USERNAME/MoodBoard",
   },
   {
@@ -18,6 +18,18 @@ const projects = [
     description: "A Java-based system to manage student data, including CRUD operations and data visualization.",
     techStack: ["Java", "MySQL"],
     link: "https://github.com/shrutitokekar/student-management-system",
+  },
+  {
+    name: "Steganography in BMP",
+    description: "A C-based steganography program that hides and extracts secret text within BMP images using least significant bit (LSB) manipulation.",
+    techStack: ["C","File I/O"],
+    link: "https://github.com/shrutitokekar/steganography-in-BMP",
+  },
+  {
+    name: "Preemptive SJF Scheduler",
+    description: "A C program implementing a Preemptive Shortest Job First (SJF) scheduling algorithm with I/O handling, process queues, and deadline tracking.",
+    techStack: ["C", "Linux"],
+    link: "https://github.com/shrutitokekar/Preemptive-SJF-Scheduler",
   },
 ];
 
