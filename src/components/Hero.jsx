@@ -27,7 +27,8 @@ const Hero = () => {
           </p>
           <Link
             to="/About"
-            className="inline-block bg-purple-100 hover:bg-purple-500 text-white font-medium px-6 py-3 rounded-full transition duration-300"
+            className="inline-block bg-purple-100 hover:bg-purple-500 font-medium px-6 py-3 rounded-full transition duration-300" 
+            style = {{color: '#c6b1cb'}}
           >
             Learn More
           </Link>
@@ -52,8 +53,8 @@ const Hero = () => {
             className="w-52 h-52 md:w-60 md:h-60 rounded-full object-cover shadow-lg"
           />
           <div className="text-purple-200 text-center md:text-left">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4" style = {{color: '#b0b0ff'}}>Hi, I'm Shruti Tokekar</h2>
-            <p className="text-purple-200 text-md md:text-lg" style = {{color: '#b0b0ff'}}>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4" style = {{color: '#8A7BB8'}}>Hi, I'm Shruti Tokekar</h2>
+            <p className="text-purple-200 text-md md:text-lg" style = {{color: '#8A7BB8'}}>
               I'm a passionate software developer with experience in full-stack development,
               creative design, and data-driven projects. I love building expressive, functional
               tools that bring joy and impact to real users.
