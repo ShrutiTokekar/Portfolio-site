@@ -27,7 +27,7 @@ const Hero = () => {
           </p>
           <Link
             to="/About"
-            className="inline-block bg-purple-400 hover:bg-purple-600 text-white font-medium px-6 py-3 rounded-full transition duration-300"
+            className="inline-block bg-purple-100 hover:bg-purple-500 text-white font-medium px-6 py-3 rounded-full transition duration-300"
           >
             Learn More
           </Link>
@@ -51,9 +51,9 @@ const Hero = () => {
             alt="Shruti Tokekar"
             className="w-52 h-52 md:w-60 md:h-60 rounded-full object-cover shadow-lg"
           />
-          <div className="text-black text-center md:text-left">
+          <div className="text-purple-200 text-center md:text-left">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">Hi, I'm Shruti Tokekar</h2>
-            <p className="text-purple-200 text-md md:text-lg text-gray-700">
+            <p className="text-purple-200 text-md md:text-lg">
               I'm a passionate software developer with experience in full-stack development,
               creative design, and data-driven projects. I love building expressive, functional
               tools that bring joy and impact to real users.
