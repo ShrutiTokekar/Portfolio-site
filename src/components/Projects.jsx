@@ -3,7 +3,7 @@ import React from "react";
 const projects = [
   {
     name: "AI Powered Financial Assitant: Zenty",
-    description: "AI-powered expense tracker and financial advisor web app built with Next.js, TypeScript, and MongoDB, featuring personalized budgets, secure authentication, and a chatbot for real-time financial insights ",
+    description: "AI-powered expense tracker and financial advisor web app built with Next.js, TypeScript, MongoDB, and a chatbot for real-time financial insights ",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
     link: "https://github.com/YOUR_USERNAME/MoodBoard",
   },
