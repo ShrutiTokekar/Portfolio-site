@@ -26,14 +26,14 @@ body.light a {
   color: #8A7BB8;
 }
 body.light a:hover {
-  color: #747bff;
+  color: #b0b0ff;
 }
 body.light button {
   background-color: #8A7BB8;
   color:#e0d5eb;
 }
 body.light button:hover {
-  border-color: #9d9dff;
+  border-color: #b0b0ff;
 }
 
 /* Dark mode */
@@ -48,11 +48,11 @@ body.dark a:hover {
   color: #b0b0ff;
 }
 body.dark button {
-  background-color: #8A7BB8;
-  color: #e0d5eb;
+  background-color: #e0d5eb;
+  color: #8A7BB8;
 }
 body.dark button:hover {
-  border-color: #9d9dff;
+  border-color: #b0b0ff;
 }
 
 /* Shared button styles */
