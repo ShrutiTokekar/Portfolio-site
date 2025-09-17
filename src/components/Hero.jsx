@@ -6,7 +6,7 @@ import meImage from '../assets/me.JPG';
 
 const Hero = () => {
   return (
-    <div className="text-white overflow-x-hidden">
+    <div className="text-purple-200 overflow-x-hidden">
       {/* Section 1: Welcome with background */}
       <section
         className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-center px-4"
