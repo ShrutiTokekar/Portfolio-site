@@ -3,7 +3,7 @@ import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-purple-200 text-purple-900 py-8">
+    <footer className="bg-purple-300 text-purple-900 py-8">
       <div className="max-w-7xl mx-auto text-center">
         {/* Social Media Links */}
         <div className="flex justify-center space-x-6 mb-4">
@@ -34,7 +34,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Text */}
-        <p className="text-sm text-purple-700">
+        <p className="text-sm text-purple-600">
           © {new Date().getFullYear()} Shruti Tokekar. All rights reserved.
         </p>
       </div>
