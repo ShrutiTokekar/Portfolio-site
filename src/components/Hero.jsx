@@ -6,7 +6,7 @@ import meImage from '../assets/me.JPG';
 
 const Hero = () => {
   return (
-    <div className="text-purple-200 overflow-x-hidden">
+    <div className="text-purple-400 overflow-x-hidden">
       {/* Section 1: Welcome with background */}
       <section
         className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-center px-4"
@@ -22,12 +22,12 @@ const Hero = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Welcome to My Portfolio
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 max-w-xl mx-auto mb-6">
+          <p className="text-lg md:text-xl text-purple-600 max-w-xl mx-auto mb-6">
             A creative showcase of my projects, passions, and journey in tech.
           </p>
           <Link
             to="/About"
-            className="inline-block bg-purple-700 hover:bg-purple-800 text-white font-medium px-6 py-3 rounded-full transition duration-300"
+            className="inline-block bg-purple-400 hover:bg-purple-600 text-white font-medium px-6 py-3 rounded-full transition duration-300"
           >
             Learn More
           </Link>
