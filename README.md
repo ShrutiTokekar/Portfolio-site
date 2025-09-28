@@ -2,7 +2,7 @@
 
 Welcome to my personal portfolio website – a clean, modern, and responsive React app designed to showcase my projects, skills, and professional background. Built with Tailwind CSS and enhanced with subtle animations, the site offers a seamless user experience across devices.
 
-🔗 **Live Site:** [https://portfolio-site-nine-peach.vercel.app/](https://portfolio-site-nine-peach.vercel.app/)
+🔗 **Live Site:** [https://portfolio-site-nine-peach.vercel.app/](www.shrutitokekar.com)
 
 ---
 
