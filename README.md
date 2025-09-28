@@ -51,7 +51,7 @@ Welcome to my personal portfolio website – a clean, modern, and responsive Rea
 Have a project in mind or want to connect?
 
 - 📧 Email: shrutitokekar@gmail.com  
-- 🌐 Website: [https://portfolio-site-nine-peach.vercel.app/](https://portfolio-site-nine-peach.vercel.app/)
+- 🌐 Website: [www.shrutitokekekar.com](www.shrutitokekar.com)
 
 ---
 
