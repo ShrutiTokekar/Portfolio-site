@@ -1,59 +1,107 @@
-# 💼 Personal Portfolio Website
+# Shruti Tokekar — Personal Portfolio
 
-Welcome to my personal portfolio website – a clean, modern, and responsive React app designed to showcase my projects, skills, and professional background. Built with Tailwind CSS and enhanced with subtle animations, the site offers a seamless user experience across devices.
+A clean, modern, and responsive React application designed to showcase my projects, skills, and professional background. Built with a refined cream aesthetic, crash-animation hero, interactive terminal, and a contact form — the site offers a seamless experience across devices.
 
-🔗 **Live Site:** [www.shrutitokekekar.com](www.shrutitokekar.com)
-
----
-
-## ✨ Features
-
-- 🎨 Sleek, responsive UI built with Tailwind CSS
-- ⚛️ Modern React component structure
-- 📬 Animated contact form with input validation
-- 🚫 No clutter – social links removed to keep focus on direct contact
-- 💡 Smooth page transitions with Framer Motion
-- 🌓 Accessible design with clean color palette and dark mode support (if implemented)
+**Live site:** [shrutitokekar.com](https://shrutitokekar.com)
 
 ---
 
-## 🛠️ Tech Stack
+## Features
 
-- **Frontend:** React.js
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion
-- **Hosting:** Vercel
+- Sleek, responsive UI with a handcrafted cream aesthetic
+- Modern React component structure with client-side routing
+- Crash-animation hero with particle effects and 3D typography
+- Live terminal component reflecting current stack and projects
+- Animated contact form powered by EmailJS — no backend required
+- Smooth page transitions and hover interactions via CSS animations
+- Dual portals for design and engineering work
 
 ---
 
-## 📁 Project Structure
+## Tech Stack
 
--src/
-  ─ assets/ # Images and media
-  ─ components/ # Reusable UI components (Navbar, Footer)
-  ─ sections/ # Page sections (Hero, About, Contact, etc.)
-  ─ data/ # Static data for cards or lists
-  ─ styles/ # Global styles and Tailwind overrides
-  ─ App.jsx # Main routing and layout
-  ─ main.jsx # Entry point
-## 👤 Author
+| Layer | Technology |
+|---|---|
+| Frontend | React.js + Vite |
+| Styling | Tailwind CSS + inline styles |
+| Routing | React Router |
+| Contact form | EmailJS |
+| Deployment | Vercel |
+
+---
+
+## Project Structure
+
+```
+src/
+├── assets/          # images and logos
+├── components/
+│   ├── Hero.jsx     # crash animation, terminal, portal cards
+│   ├── About.jsx    # timeline, skills accordion, certificates
+│   ├── DesignPortfolio.jsx
+│   ├── Projects.jsx
+│   ├── Contact.jsx
+│   ├── Terminal.jsx # live terminal component
+│   └── Footer.jsx
+├── App.jsx          # main routing and layout
+└── main.jsx         # entry point
+public/
+└── resume.pdf       # served with forced download header
+vercel.json          # content-disposition header for resume
+```
+
+---
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Hero with crash animation and terminal |
+| `/about` | Timeline, skills accordion, certificates |
+| `/design` | UI/UX and web design projects |
+| `/projects` | Engineering and development projects |
+| `/contact` | Contact form and links |
+
+---
+
+## Running Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173)
+
+## Building for Production
+
+```bash
+npm run build
+npm run preview
+```
+
+---
+
+## Deployment
+
+Deployed on Vercel. Every push to `master` triggers an automatic redeploy.
+
+The `vercel.json` sets a `Content-Disposition: attachment` header on `/resume.pdf` so it downloads directly rather than opening in the browser.
+
+---
+
+## Author
 
 **Shruti Tokekar**
+B.S. Computer Science, Minor in Graphic & Web Design — East Stroudsburg University
+Developer · Designer · Creative Technologist
+Allentown, PA
 
-- 🎓 B.S. in Computer Science — East Stroudsburg University  
-- 💼 Developer | Creative Technologist  
-- 🌍 Allentown, PA, USA
-
----
-
-## 📬 Contact
-
-Have a project in mind or want to connect?
-
-- 📧 Email: shrutitokekar@gmail.com  
-- 🌐 Website: [www.shrutitokekekar.com](www.shrutitokekar.com)
+- Email: [shrutitokekar@gmail.com](mailto:shrutitokekar@gmail.com)
+- Website: [shrutitokekar.com](https://shrutitokekar.com)
+- GitHub: [github.com/shrutitokekar](https://github.com/shrutitokekar)
+- LinkedIn: [linkedin.com/in/shruti-tokekar](https://linkedin.com/in/shruti-tokekar)
 
 ---
 
-> © 2025 Shruti Tokekar. All rights reserved.
-
+© 2026 Shruti Tokekar. All rights reserved.
