@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
 
 import imgShruti  from "../assets/Shruti.png";
 import imgTokekar from "../assets/Tokekar.png";
 import imgDes     from "../assets/Des.png";
 import imgDev     from "../assets/dev.png";
 
-import Terminal   from "./Terminal";
+import HomeSections from "./HomeSections";
+import SiteNav from "./SiteNav";
 
 const PARTICLES = [
   { dx:  110, dy: -35, size: 5, dur: 0.90 },
@@ -187,12 +187,12 @@ export default function Hero() {
     <div style={{ background: "#edeae4", minHeight: "100vh", cursor: "none", overflowX: "hidden" }}>
 
       {/* Custom cursor */}
-      <div ref={cursorRef} style={{
+      <div ref={cursorRef} className="custom-cursor" style={{
         position: "fixed", top: 0, left: 0, zIndex: 9999,
         width: 10, height: 10, borderRadius: "50%", background: "#1a1815",
         pointerEvents: "none", mixBlendMode: "multiply",
       }} />
-      <div ref={cursorRingRef} style={{
+      <div ref={cursorRingRef} className="custom-cursor" style={{
         position: "fixed", top: 0, left: 0, zIndex: 9998,
         width: 34, height: 34, borderRadius: "50%",
         border: "1px solid rgba(26,24,21,0.35)", pointerEvents: "none",
@@ -200,42 +200,7 @@ export default function Hero() {
       }} />
 
       {/* NAV */}
-      <nav ref={navRef} style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "0 52px", height: 68,
-        transition: "background 0.4s, box-shadow 0.4s",
-        fontFamily: "'DM Mono', Menlo, monospace",
-      }}>
-        <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-          <img src={logo} alt="Shruti Tokekar" style={{ height: 36, width: "auto", objectFit: "contain" }} />
-        </Link>
-
-        <ul style={{ display: "flex", gap: 36, listStyle: "none", margin: 0, padding: 0, alignItems: "center" }}>
-          {[{ label: "About", to: "/about" }, { label: "Design", to: "/design" }, { label: "Dev", to: "/projects" }].map(({ label, to }) => (
-            <li key={label}>
-              <Link to={to} style={{
-                fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase",
-                color: "#7a7060", textDecoration: "none", transition: "color 0.3s",
-              }}
-                onMouseEnter={e => e.target.style.color = "#1a1815"}
-                onMouseLeave={e => e.target.style.color = "#7a7060"}
-              >{label}</Link>
-            </li>
-          ))}
-          <li>
-            <Link to="/contact" style={{
-              fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase",
-              color: "#edeae4", background: "#1a1815",
-              padding: "9px 22px", borderRadius: 2, textDecoration: "none",
-              transition: "background 0.3s",
-            }}
-              onMouseEnter={e => e.target.style.background = "#3a3530"}
-              onMouseLeave={e => e.target.style.background = "#1a1815"}
-            >Say Hello →</Link>
-          </li>
-        </ul>
-      </nav>
+      <SiteNav variant="home" ref={navRef} />
 
       {/* HERO */}
       <section style={{
@@ -258,7 +223,7 @@ export default function Hero() {
         ))}
 
         {/* Name crash stage */}
-        <div style={{
+        <div className="hero-stage" style={{
           position: "relative",
           width: "min(620px, 90vw)", height: 300,
           display: "flex", alignItems: "center", justifyContent: "center",
@@ -320,7 +285,7 @@ export default function Hero() {
         </div>
 
         {/* Tagline */}
-        <p style={{
+        <p className="hero-tagline" style={{
           fontFamily: "'DM Mono', monospace", fontSize: 10,
           letterSpacing: "0.38em", textTransform: "uppercase",
           color: "#7a7060", marginTop: 18, opacity: 0,
@@ -330,7 +295,7 @@ export default function Hero() {
         </p>
 
         {/* Portal cards */}
-        <div style={{
+        <div className="portal-row" style={{
           display: "flex", gap: 20, marginTop: 50, opacity: 0,
           animation: "fadeUp 0.8s ease-out 2.55s forwards",
         }}>
@@ -349,51 +314,16 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* TERMINAL — replaces marquee */}
-      <div style={{
-        borderTop: "1px solid rgba(0,0,0,0.07)",
-        borderBottom: "1px solid rgba(0,0,0,0.07)",
-        background: "rgba(255,255,255,0.18)",
-        padding: "60px 80px",
-      }}>
-        <p style={{
-          fontFamily: "'DM Mono',monospace", fontSize: 10,
-          letterSpacing: "0.4em", textTransform: "uppercase",
-          color: "#7a7060", marginBottom: 24,
-        }}>
-          02 — Currently
-        </p>
-        <Terminal />
-      </div>
+      {/* Everything below the hero lives in HomeSections */}
+      <HomeSections />
 
-      {/* ABOUT */}
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 80px" }}>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, letterSpacing: "0.4em", textTransform: "uppercase", color: "#7a7060", marginBottom: 14 }}>
-          01 — About
-        </p>
-        <h2 style={{ fontFamily: "'Fraunces',serif", fontWeight: 900, color: "#1a1815", lineHeight: 1.1, fontSize: "clamp(34px,5vw,60px)", marginBottom: 22 }}>
-          I make things<br />
-          <em style={{ fontStyle: "italic", color: "#9a8aaa" }}>look good</em><br />
-          and work well.
-        </h2>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 13, lineHeight: 1.9, color: "#7a7060", maxWidth: 520, marginBottom: 28 }}>
-          CS student at East Stroudsburg University with a minor in Graphic &amp; Web Design.
-          I build polished digital experiences that feel as good as they perform.
-        </p>
-        <Link to="/about" style={{
-          fontFamily: "'DM Mono',monospace", fontSize: 10,
-          letterSpacing: "0.22em", textTransform: "uppercase",
-          color: "#1a1815", textDecoration: "none",
-          borderBottom: "1px solid #1a1815", paddingBottom: 2,
-        }}>More about me →</Link>
-      </div>
-
-      <hr style={{ border: "none", height: 1, background: "rgba(0,0,0,0.07)", margin: "0 80px" }} />
+      <hr style={{ border: "none", height: 1, background: "rgba(0,0,0,0.07)", margin: "0 clamp(20px, 5vw, 80px)" }} />
 
       {/* FOOTER */}
       <footer style={{
         display: "flex", justifyContent: "space-between", alignItems: "center",
-        padding: "40px 80px", borderTop: "1px solid rgba(0,0,0,0.07)",
+        flexWrap: "wrap", gap: "16px 24px",
+        padding: "40px clamp(20px, 5vw, 80px)", borderTop: "1px solid rgba(0,0,0,0.07)",
       }}>
         <p style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, letterSpacing: "0.15em", color: "#7a7060", margin: 0 }}>
           © {new Date().getFullYear()} Shruti Tokekar
