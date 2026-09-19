@@ -99,8 +99,8 @@ export default function Contact() {
   };
 
   return (
-    <section style={{ background: "#edeae4", minHeight: "100vh", padding: "80px 0 120px" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 72px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 100, alignItems: "start" }}>
+    <section style={{ background: "#edeae4", minHeight: "100vh", padding: "clamp(40px, 8vw, 80px) 0 clamp(72px, 10vw, 120px)" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 5vw, 72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "56px clamp(40px, 8vw, 100px)", alignItems: "start" }}>
 
         {/* LEFT */}
         <div>
@@ -143,7 +143,7 @@ export default function Contact() {
 
         {/* RIGHT: form */}
         <div style={fadeStyle(rightVisible)}>
-          <div style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(100,90,80,0.12)", borderRadius: 12, padding: "48px 44px", backdropFilter: "blur(8px)" }}>
+          <div style={{ background: "rgba(255,255,255,0.5)", border: "1px solid rgba(100,90,80,0.12)", borderRadius: 12, padding: "clamp(28px, 5vw, 48px) clamp(22px, 4.5vw, 44px)", backdropFilter: "blur(8px)" }}>
             {status === "sent" ? (
               <SentConfirmation onReset={() => setStatus("idle")} />
             ) : (

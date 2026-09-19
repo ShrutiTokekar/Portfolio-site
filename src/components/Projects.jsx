@@ -78,8 +78,8 @@ export default function Projects() {
     : projects.filter(p => p.category === activeCategory);
 
   return (
-    <section style={{ background: "#edeae4", minHeight: "100vh", padding: "80px 0 120px" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 72px" }}>
+    <section style={{ background: "#edeae4", minHeight: "100vh", padding: "clamp(40px, 8vw, 80px) 0 clamp(72px, 10vw, 120px)" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 5vw, 72px)" }}>
 
         <div style={{
           marginBottom: 56,

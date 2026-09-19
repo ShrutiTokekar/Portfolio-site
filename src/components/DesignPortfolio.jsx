@@ -2,52 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import caseStudies from "../data/caseStudies";
 import { caseImage } from "../utils/caseImages";
+import CoverStandIn from "./CoverStandIn";
 
 // Each card opens its own mini case study at /design/:slug
 const designProjects = caseStudies.map((c, i) => ({ id: i + 1, ...c }));
 
 const CATEGORIES = ["All", "Web Design", "UI/UX", "Creative Tech", "Brand Identity"];
-
-// Shown until a real screenshot exists at src/assets/case-studies/<slug>/cover.*
-function CoverStandIn({ palette }) {
-  return (
-    <div
-      aria-hidden="true"
-      style={{
-        position: "absolute",
-        inset: 0,
-        background: palette.bg,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          width: "62%",
-          height: "64%",
-          background: palette.surface,
-          borderRadius: 10,
-          padding: 14,
-          boxSizing: "border-box",
-          display: "flex",
-          flexDirection: "column",
-          gap: 8,
-          boxShadow: "0 6px 24px rgba(0,0,0,0.08)",
-        }}
-      >
-        <div style={{ height: 8, width: "46%", borderRadius: 3, background: palette.ink, opacity: 0.85 }} />
-        <div style={{ height: 5, width: "70%", borderRadius: 3, background: palette.ink, opacity: 0.3 }} />
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginTop: 4, flex: 1 }}>
-          <div style={{ background: palette.accent, borderRadius: 5 }} />
-          <div style={{ background: palette.accent, borderRadius: 5, opacity: 0.6 }} />
-          <div style={{ background: palette.accent, borderRadius: 5, opacity: 0.6 }} />
-          <div style={{ background: palette.accent, borderRadius: 5 }} />
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function DesignCard({ project, index }) {
   const [hovered, setHovered] = useState(false);
@@ -115,21 +75,23 @@ function DesignCard({ project, index }) {
           >
             {project.category} · {project.year}
           </span>
-          <span
-            style={{
-              fontFamily: "'DM Mono',monospace",
-              fontSize: 9,
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              color: "#6e5a86",
-              padding: "3px 10px",
-              border: "1px solid rgba(110,90,134,0.4)",
-              borderRadius: 20,
-              whiteSpace: "nowrap",
-            }}
-          >
-            {project.status || "Case study"}
-          </span>
+          {project.status && (
+            <span
+              style={{
+                fontFamily: "'DM Mono',monospace",
+                fontSize: 9,
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                color: "#6e5a86",
+                padding: "3px 10px",
+                border: "1px solid rgba(110,90,134,0.4)",
+                borderRadius: 20,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {project.status}
+            </span>
+          )}
         </div>
 
         <h3
@@ -155,28 +117,6 @@ function DesignCard({ project, index }) {
         >
           {project.summary}
         </p>
-
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            gap: "4px 8px",
-            marginBottom: 16,
-            fontFamily: "'DM Mono',monospace",
-            fontSize: 9,
-            letterSpacing: "0.14em",
-            textTransform: "uppercase",
-            color: "#6b6155",
-          }}
-        >
-          {project.process.map((step, i) => (
-            <React.Fragment key={step.label}>
-              {i > 0 && <span aria-hidden="true">·</span>}
-              <span>{step.label}</span>
-            </React.Fragment>
-          ))}
-        </div>
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20 }}>
           {project.tools.map((t) => (
@@ -231,8 +171,8 @@ export default function DesignPortfolio() {
     : designProjects.filter(p => p.category === activeCategory);
 
   return (
-    <section style={{ background: "#edeae4", minHeight: "100vh", padding: "80px 0 120px" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 72px" }}>
+    <section style={{ background: "#edeae4", minHeight: "100vh", padding: "clamp(40px, 8vw, 80px) 0 clamp(72px, 10vw, 120px)" }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(20px, 5vw, 72px)" }}>
 
         <div style={{
           marginBottom: 56,

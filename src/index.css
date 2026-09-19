@@ -33,3 +33,21 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ---------- Phones and touch screens ---------- */
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: hidden; }
+
+/* The custom cursor only makes sense with a mouse. */
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor { display: none !important; }
+}
+
+/* Home hero: keep the same composition, scaled to the screen. */
+@media (max-width: 688px) {
+  .hero-stage { height: calc(90vw * 0.4839) !important; }
+  .hero-tagline { letter-spacing: 0.2em !important; text-align: center; padding: 0 16px; }
+}
+@media (max-width: 480px) { .portal-row { zoom: 0.84; } }
+@media (max-width: 400px) { .portal-row { zoom: 0.76; } }
+@media (max-width: 350px) { .portal-row { zoom: 0.68; } }

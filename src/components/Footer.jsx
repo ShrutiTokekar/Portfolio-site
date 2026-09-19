@@ -6,8 +6,9 @@ export default function Footer() {
     <footer style={{
       background: "#edeae4",
       borderTop: "1px solid rgba(0,0,0,0.07)",
-      padding: "36px 52px",
+      padding: "36px clamp(20px, 5vw, 52px)",
       display: "flex", justifyContent: "space-between", alignItems: "center",
+      flexWrap: "wrap", gap: "16px 24px",
     }}>
       <p style={{ fontFamily: "'DM Mono',Menlo,monospace", fontSize: 10, letterSpacing: "0.15em", color: "#7a7060", margin: 0 }}>
         © {new Date().getFullYear()} Shruti Tokekar

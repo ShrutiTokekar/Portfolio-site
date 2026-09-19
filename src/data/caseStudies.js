@@ -17,8 +17,7 @@ const caseStudies = [
     subtitle: "Task Manager",
     category: "UI/UX",
     year: "2026",
-    summary:
-      "A playful full-stack task manager with a Kanban board, calendar, categories, and reminders, built around its own bright design system.",
+    summary: "A playful full-stack task manager with a Kanban board, calendar, and reminders.",
     role: "Designer + full-stack developer",
     timeline: "",
     tools: ["React", "TypeScript", "Tailwind CSS", "Spring Boot"],
@@ -46,36 +45,19 @@ const caseStudies = [
     },
     overview: {
       heading: "Task management that doesn\u2019t feel like homework.",
-      body: "Most task apps feel like admin. Flow State pairs a Kanban board, a calendar, and reminders with a bright, playful look, so planning your work feels a little lighter and a lot less like a chore.",
+      body: "I wanted a planner people would actually enjoy opening, so I gave it a bright, friendly personality instead of the usual gray admin look.",
     },
     process: [
-      {
-        label: "Structure",
-        text: "Organized the app around how work actually moves: a dashboard, a calendar, categories, and trackers, all behind a slim sidebar.",
-        chips: ["Dashboard", "Calendar", "Categories", "Trackers", "Profile"],
-      },
-      {
-        label: "Board",
-        text: "Laid out the dashboard with four status cards and a calendar on top, then a Kanban board with To Do, In Progress, and Completed columns.",
-        chips: ["Status cards", "Calendar", "Upcoming", "To Do", "In Progress", "Completed"],
-      },
-      {
-        label: "UI design",
-        text: "Built a playful design system: Chicle headings, a periwinkle, lime, butter, and lavender palette, and a color for each task status.",
-        swatches: ["#8894D1", "#CAE892", "#DFC9E6", "#FDFAC5", "#DFA4C6"],
-      },
-      {
-        label: "Build",
-        text: "Built it full stack: React, TypeScript, TanStack Query, and Zustand up front, with a Spring Boot API, PostgreSQL, JWT, and Google sign-in behind it.",
-        chips: ["React", "TypeScript", "TanStack Query", "Zustand", "Spring Boot", "PostgreSQL", "JWT", "Google OAuth"],
-      },
+      { label: "Structure", text: "Organized the app around how work actually moves.", chips: ["Dashboard", "Calendar", "Categories", "Trackers", "Profile"] },
+      { label: "Board", text: "Put the numbers first and the work second: a quick status summary and calendar on top, then a three-column board.", chips: ["To Do", "In Progress", "Completed"] },
+      { label: "UI design", text: "A bright, playful look: a hand-picked palette, a friendly heading font, and one color for each task status." },
+      { label: "Build", text: "Built the whole stack myself: a React app, a REST API, and a relational database, with secure sign-in." },
     ],
     decision: {
       title: "Sharing is an invitation, not an assumption.",
       body: "Sharing a category sends an invitation the other person can accept or decline, and reminders arrive as emails you can act on directly. Working with someone else never happens without them saying yes.",
     },
-    outcome:
-      "A live full-stack task manager with a Kanban board, calendar, category sharing, email reminders, and secure sign-in, scoring 94 on Lighthouse performance and accessibility.",
+    outcome: "Shipped to production with a Lighthouse score of 94 and 67+ zero-downtime deployments.",
     learned: "",
     next: "",
   },
@@ -86,8 +68,7 @@ const caseStudies = [
     subtitle: "Website",
     category: "Web Design",
     year: "2026",
-    summary:
-      "This site: a cream, editorial portfolio with a crash-animation hero, metallic 3D lettering, an interactive terminal, and separate portals for design and code.",
+    summary: "This site: a cream, editorial portfolio with a metallic 3D hero.",
     role: "Designer + developer",
     timeline: "",
     tools: ["Figma", "React", "Framer Motion", "Tailwind CSS"],
@@ -115,36 +96,19 @@ const caseStudies = [
     },
     overview: {
       heading: "One site for two halves of the work.",
-      body: "I design and I build, and most portfolios only make room for one. This site gives each its own portal from the very first screen, under a single shared visual identity.",
+      body: "I design and I build, and most portfolios only make room for one. This one gives each its own space under a single identity.",
     },
     process: [
-      {
-        label: "Concept",
-        text: "Set the direction first: a cream ground, metallic lilac lettering, and a serif display face paired with mono labels.",
-        chips: ["Cream ground", "Chrome lettering", "Fraunces", "DM Mono"],
-      },
-      {
-        label: "Structure",
-        text: "Split the site into a Design portal and a Code portal, with About and Contact behind a slim navigation bar.",
-        chips: ["Design portal", "Code portal", "About", "Contact"],
-      },
-      {
-        label: "UI design",
-        text: "Kept the palette small: warm cream, near-black ink, and a single soft lilac accent.",
-        swatches: ["#EDEAE4", "#1A1815", "#9A8AAA", "#7A7060"],
-      },
-      {
-        label: "Build",
-        text: "Built in React and Vite with React Router, Tailwind, and Framer Motion, plus an interactive terminal and an EmailJS contact form. Deployed on Vercel.",
-        chips: ["React", "Vite", "Framer Motion", "EmailJS", "Vercel"],
-      },
+      { label: "Concept", text: "Set the direction first: warm and editorial, with one bold, shiny centerpiece." },
+      { label: "Structure", text: "Split the site into two portals, with About and Contact behind a slim nav." },
+      { label: "UI design", text: "Kept it restrained: cream, near-black, and one soft lilac accent." },
+      { label: "Build", text: "Added an interactive terminal and a working contact form, and deployed it on Vercel." },
     ],
     decision: {
       title: "Make the first screen do the introducing.",
-      body: "The hero opens with a crash animation and 3D lettering, then a terminal shows the current stack and projects. A visitor gets the personality and the substance before they scroll or click anything.",
+      body: "The name crashes into place, then a terminal shows the current stack and projects, so a visitor gets the personality and the substance before they scroll or click anything.",
     },
-    outcome:
-      "A live, responsive personal site with a design portal, a code portal, a working contact form, and a downloadable resume.",
+    outcome: "",
     learned: "",
     next: "",
   },
@@ -155,8 +119,7 @@ const caseStudies = [
     subtitle: "Personal Finance App",
     category: "UI/UX",
     year: "2025",
-    summary:
-      "An AI-powered personal finance app that brings spending, budgets, savings, stocks, and a chatbot into one calm, easy-to-scan dashboard.",
+    summary: "An AI-powered personal finance app with a dashboard, budgets, savings goals, and a chat assistant.",
     role: "Designer + developer",
     timeline: "",
     tools: ["Figma", "React", "TypeScript", "Tailwind CSS"],
@@ -185,36 +148,19 @@ const caseStudies = [
     },
     overview: {
       heading: "One calm place to see where your money goes.",
-      body: "Money tools tend to be either a spreadsheet or a wall of charts. ZentyAI organizes everything into eight focused sections, from Dashboard and Budget to Savings, Stocks, and an AI Assistant you can simply ask questions in plain language.",
+      body: "Money tools tend to be either a spreadsheet or a wall of charts. I wanted something you could simply ask.",
     },
     process: [
-      {
-        label: "Structure",
-        text: "Grouped the features into eight sections in one sidebar, so nothing is more than a click away.",
-        chips: ["Dashboard", "AI Assistant", "Transactions", "Analytics", "Savings", "Budget", "Stocks", "Settings"],
-      },
-      {
-        label: "Wireframe",
-        text: "Laid out the dashboard first: four key numbers up top, then trends and a category breakdown below.",
-        chips: ["4 key numbers", "Spending trends", "Spending by category"],
-      },
-      {
-        label: "UI design",
-        text: "Chose a warm peach palette and gave each key metric its own color: green, red, blue, and purple.",
-        swatches: ["#FFF7ED", "#FFEDD5", "#FED7AA", "#7C2D12", "#DCFCE7", "#FEE2E2", "#DBEAFE", "#F3E8FF"],
-      },
-      {
-        label: "Build",
-        text: "Built the frontend in React and TypeScript with Tailwind, Recharts, and Framer Motion, paired with a Python NLP backend that powers the chatbot.",
-        chips: ["React", "TypeScript", "Tailwind", "Recharts", "Python", "NLP"],
-      },
+      { label: "Structure", text: "Grouped everything into eight sections in one sidebar, so nothing is more than a click away.", chips: ["Dashboard", "AI Assistant", "Transactions", "Analytics", "Savings", "Budget", "Stocks", "Settings"] },
+      { label: "Wireframe", text: "Started with the dashboard: four key numbers on top, then a spending trend and a category breakdown." },
+      { label: "UI design", text: "A warm peach palette, with a soft color for each metric so the numbers read at a glance." },
+      { label: "Build", text: "A React frontend with live charts, backed by a Python service that answers questions in plain language." },
     ],
     decision: {
       title: "Design the empty state, not just the full one.",
       body: "A new user opens every chart with nothing in it. Instead of leaving blank boxes, each empty panel says what is missing and what to do about it, like \u201cAdd transactions to see trends.\u201d The first screen someone sees still feels intentional.",
     },
-    outcome:
-      "A live personal finance app with a dashboard, transactions, analytics, savings, budgets, stocks, and an AI assistant.",
+    outcome: "",
     learned: "",
     next: "",
   },
@@ -225,8 +171,7 @@ const caseStudies = [
     subtitle: "Brand Site",
     category: "Web Design",
     year: "2026",
-    summary:
-      "A single-page brand site for a biotech skincare startup that walks visitors from the problem, to the science, to the product.",
+    summary: "A single-page brand site for a biotech skincare startup.",
     role: "UI/UX designer + developer",
     timeline: "",
     tools: ["Figma", "Next.js", "TypeScript", "Tailwind CSS"],
@@ -255,36 +200,19 @@ const caseStudies = [
     },
     overview: {
       heading: "Make a science-heavy story easy to scroll.",
-      body: "Skinthesis is a biotech beauty startup rethinking anti-aging without retinol. The site had to explain a market shift, an ingredient, and a product in a single scroll, without reading like a research paper.",
+      body: "The startup needed to explain a market shift, an ingredient, and a product in one scroll, without reading like a research paper.",
     },
     process: [
-      {
-        label: "Story",
-        text: "Ordered the page as a narrative: why now, the science, the product, what is next, who it is for, and the team.",
-        chips: ["Why now", "Science", "Product", "Pipeline", "Who it's for", "Team"],
-      },
-      {
-        label: "Content",
-        text: "Turned dense claims into scannable pieces: stat callouts, a side-by-side ingredient comparison, and a three-step ritual.",
-        chips: ["Stat callouts", "Comparison table", "3-step ritual", "Before / after"],
-      },
-      {
-        label: "UI design",
-        text: "Built a calm palette of cream, mist, and navy with a sky-blue accent, and paired Playfair Display with DM Sans.",
-        swatches: ["#F7F3EF", "#EDF3F8", "#1A2D4A", "#5BA4CF"],
-      },
-      {
-        label: "Build",
-        text: "Rebuilt a plain HTML, CSS, and jQuery page in Next.js, TypeScript, and Tailwind, with typed components, scroll-in animations, and an interactive product section.",
-        chips: ["Next.js", "TypeScript", "Tailwind", "Shade picker", "Gallery", "Accordions"],
-      },
+      { label: "Story", text: "Mapped out the sections before designing any of them.", chips: ["Why now", "Science", "Product", "Pipeline", "Who it's for", "Team"] },
+      { label: "Content", text: "Turned dense claims into pieces you can scan at a glance.", chips: ["Stat callouts", "Comparison table", "3-step ritual"] },
+      { label: "UI design", text: "A calm, clinical-but-warm look: soft neutrals with a single sky-blue accent." },
+      { label: "Build", text: "Rebuilt an early HTML and jQuery page as typed components, with scroll-in animations and an interactive product section." },
     ],
     decision: {
       title: "Let the page tell the story in order.",
       body: "Visitors arrive skeptical of yet another anti-aging claim. So the page starts with why the moment matters, backs it with a direct comparison, and only then shows the product. By the time the shade picker appears, the reader already knows why it exists.",
     },
-    outcome:
-      "A live, responsive brand site with a full story flow, an interactive product showcase, and a waitlist signup.",
+    outcome: "Live, with a working waitlist signup.",
     learned: "",
     next: "",
   },
@@ -296,8 +224,7 @@ const caseStudies = [
     category: "UI/UX",
     year: "2026",
     status: "In progress",
-    summary:
-      "A mobile travel app for searching and booking flights, hotels, rental cars, and activities, with an itinerary that keeps the whole trip in one place.",
+    summary: "A mobile travel app for booking flights, hotels, rental cars, and activities.",
     role: "UX/UI designer",
     timeline: "",
     tools: ["Figma"],
@@ -323,32 +250,14 @@ const caseStudies = [
     },
     overview: {
       heading: "One app for the whole trip.",
-      body: "Booking a trip usually means jumping between flights, hotels, cars, and activities. Waypoint brings them into one mobile app, from search to booking, and gathers everything into a single itinerary.",
+      body: "Planning a trip usually means juggling separate apps and tabs. Waypoint brings search, booking, and the itinerary into one flow.",
     },
     process: [
-      {
-        label: "Research",
-        text: "Looked at what Kayak and Expedia get right and where travelers get stranded, then defined the target user: the independent multi-stop planner.",
-        chips: ["Kayak", "Expedia", "Multi-stop planner"],
-      },
-      {
-        label: "User flow",
-        text: "Mapped the journey from welcome and login through hotels, flights, cars, and activities, then on to booking, confirmation, and the itinerary.",
-        chips: ["Welcome", "Login", "Home", "Hotels", "Flights", "Cars", "Activities", "Booking", "Itinerary"],
-      },
-      {
-        label: "Low-fi",
-        text: "Drew 40 low-fidelity screens in Figma: the entry screens, search flows for hotels, flights (round trip and one-way), cars, and activities, plus booking, confirmation, and the itinerary.",
-        chips: ["Welcome", "Home", "Hotel search", "Flight search", "Car search", "Activities", "Booking", "Itinerary"],
-      },
-      {
-        label: "High-fi next",
-        text: "Up next: apply the blush-to-plum palette to the wireframes and build a clickable prototype.",
-        chips: ["Color palette", "High-fidelity screens", "Clickable prototype"],
-      },
+      { label: "Research", text: "Looked at what Kayak and Expedia get right and where travelers get stranded, then defined the target user: the independent multi-stop planner." },
+      { label: "User flow", text: "Mapped the journey from welcome and login through to booking, confirmation, and the itinerary.", chips: ["Hotels", "Flights", "Cars", "Activities"] },
+      { label: "Low-fi", text: "Drew 40 low-fidelity screens in Figma, covering the entry screens and every search flow." },
     ],
-    outcome:
-      "Work in progress. The user flow and 40 low-fidelity screens are done in Figma. High-fidelity screens and a clickable prototype are next.",
+    outcome: "Next up: apply the color palette to the wireframes and build a clickable prototype.",
     learned: "",
     next: "",
   },
@@ -360,8 +269,7 @@ const caseStudies = [
     category: "UI/UX",
     year: "2026",
     status: "",
-    summary:
-      "A thrift and vintage marketplace app that plans your thrifting day: a trail map of nearby stores, a feed matched to your style, and local events.",
+    summary: "A thrift and vintage marketplace app that plans your thrifting day.",
     role: "UX designer",
     timeline: "",
     tools: ["Figma"],
@@ -397,38 +305,21 @@ const caseStudies = [
     },
     overview: {
       heading: "Turn thrifting from show-up-and-hope into a plan.",
-      body: "Most secondhand apps are built for browsing from the couch and leave the in-person side of thrifting to luck. Thrift Trail is a marketplace for buying and selling secondhand fashion that also helps you plan the trip, with a trail map, a style-matched feed, and local events.",
+      body: "Secondhand apps are great for browsing, but the in-person side of thrifting is still show-up-and-hope. Thrift Trail helps you plan the trip.",
     },
     processLabel: "The screens",
     processHeading: "The main screens.",
     process: [
-      {
-        label: "Trail Map",
-        text: "Search nearby stores on a map, filter by Vintage, Consignment, or Curated, and pull up a sheet of the closest spots with distance and store type.",
-        chips: ["Search", "Filter chips", "Map", "Nearby stores"],
-      },
-      {
-        label: "Vibe Match Feed",
-        text: "A feed of finds curated to your style, filtered by aesthetics like Y2K, Cottagecore, Grunge, and Preppy.",
-        chips: ["Y2K", "Cottagecore", "Grunge", "Preppy"],
-      },
-      {
-        label: "Store detail",
-        text: "Each store gets its own page with a rating, tags, hours, address, and featured items.",
-        chips: ["Rating", "Hours", "Address", "Featured items"],
-      },
-      {
-        label: "Events + saved",
-        text: "Local events with date cards, plus a Saved tab for favorite places and items.",
-        chips: ["Pop-ups", "Flea markets", "Sales", "Saved places", "Saved items"],
-      },
+      { label: "Trail Map", text: "Find nearby stores on a map, then filter by type.", chips: ["Vintage", "Consignment", "Curated"] },
+      { label: "Vibe Match Feed", text: "A feed of finds curated to your style.", chips: ["Y2K", "Cottagecore", "Grunge", "Preppy"] },
+      { label: "Store detail", text: "A page for each store with what you need before you go.", chips: ["Rating", "Hours", "Address", "Featured items"] },
+      { label: "Events + saved", text: "Pop-ups, flea markets, and sales, plus a place to save your favorites." },
     ],
     decision: {
       title: "Design for the aisle, not just the app.",
-      body: "Most secondhand apps assume you are browsing from the couch. This one leans into the in-person trip: a map of nearby stores for the day, a feed that learns your style, and events worth showing up for.",
+      body: "A mapped route for the day, a feed that learns your taste, and events worth showing up for: the app is built to get you out the door.",
     },
-    outcome:
-      "Six high-fidelity screens designed in Figma: Home, Trail Map, Vibe Match Feed, Store Detail, Events, and Saved.",
+    outcome: "Six high-fidelity screens, designed in Figma.",
     learned: "",
     next: "",
   },
@@ -439,8 +330,7 @@ const caseStudies = [
     subtitle: "App",
     category: "Web Design",
     year: "2023",
-    summary:
-      "A minimal to-do list for adding, categorizing, completing, and deleting tasks, built with plain HTML, CSS, and JavaScript.",
+    summary: "A minimal to-do list with categories, built as an early project.",
     role: "Designer + developer",
     timeline: "",
     tools: ["HTML", "CSS", "JavaScript"],
@@ -460,35 +350,19 @@ const caseStudies = [
     },
     overview: {
       heading: "Start with the smallest useful thing.",
-      body: "An early project to practice the fundamentals: turning a simple form into a living list. Add a task with an optional category, mark it complete, or delete it.",
+      body: "I wanted to practice the fundamentals: turning a simple form into a living list that updates as you use it.",
     },
     process: [
-      {
-        label: "Plan",
-        text: "Kept the feature set to four actions so the interface could stay simple.",
-        chips: ["Add", "Categorize", "Complete", "Delete"],
-      },
-      {
-        label: "Layout",
-        text: "A single centered card with the input fields on top and the task list underneath.",
-        chips: ["Task input", "Category", "Add button", "Task list"],
-      },
-      {
-        label: "UI design",
-        text: "Paired a soft sage headline with a warm cream card over a background image, with a strikethrough for finished tasks.",
-        swatches: ["#F3F1ED", "#889F83", "#F0DAD1", "#F4F4F4"],
-      },
-      {
-        label: "Build",
-        text: "Wrote it in vanilla JavaScript: each task is added to the page directly, with a toggle for completion and a button to remove it.",
-        chips: ["HTML", "CSS", "JavaScript"],
-      },
+      { label: "Plan", text: "Kept it to four actions so the interface could stay simple.", chips: ["Add", "Categorize", "Complete", "Delete"] },
+      { label: "Layout", text: "One centered card: inputs on top, the list underneath." },
+      { label: "UI design", text: "Soft sage and cream over a leafy background image." },
+      { label: "Build", text: "Plain JavaScript with no framework: tasks are added to the page directly, with a toggle to complete and a button to remove." },
     ],
     decision: {
       title: "Keep finished tasks visible.",
       body: "Completing a task crosses it out instead of removing it, so the list doubles as a quick record of what has been done.",
     },
-    outcome: "A working task list built with plain HTML, CSS, and JavaScript.",
+    outcome: "",
     learned: "",
     next: "",
   },

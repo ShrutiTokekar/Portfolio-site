@@ -60,6 +60,7 @@ function Chip({ children }) {
 }
 
 function StepVisual({ step, image }) {
+  if (!image && !step.swatches && !(step.chips && step.chips.length)) return null;
   const box = {
     height: 150,
     borderRadius: 6,
@@ -200,7 +201,6 @@ export default function CaseStudy() {
   const ds = project.designSystem;
   const hasDS = ds && ((ds.colors && ds.colors.length) || (ds.fonts && ds.fonts.length));
   const outcomeNumber = hasDS ? "04" : "03";
-  const liveHost = project.live ? new URL(project.live).host : "";
 
   return (
     <section style={{ background: CREAM, minHeight: "100vh", padding: "56px 0 120px" }}>
@@ -262,6 +262,30 @@ export default function CaseStudy() {
           >
             {project.summary}
           </p>
+          {(project.figma || project.prototype || project.live || project.github) && (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+              {project.prototype && (
+                <a href={project.prototype} target="_blank" rel="noreferrer" style={linkButton(true)}>
+                  View prototype ↗
+                </a>
+              )}
+              {project.live && (
+                <a href={project.live} target="_blank" rel="noreferrer" style={linkButton(!project.prototype)}>
+                  View live ↗
+                </a>
+              )}
+              {project.figma && (
+                <a href={project.figma} target="_blank" rel="noreferrer" style={linkButton(!project.prototype && !project.live)}>
+                  View in Figma ↗
+                </a>
+              )}
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noreferrer" style={linkButton(false)}>
+                  Source on GitHub ↗
+                </a>
+              )}
+            </div>
+          )}
         </header>
 
         {hero && (
@@ -287,13 +311,6 @@ export default function CaseStudy() {
           {project.status && <MetaItem label="Status">{project.status}</MetaItem>}
           {project.timeline && <MetaItem label="Timeline">{project.timeline}</MetaItem>}
           <MetaItem label="Tools">{project.toolsFull}</MetaItem>
-          {project.live && (
-            <MetaItem label="Live site">
-              <a href={project.live} target="_blank" rel="noreferrer" style={{ color: LILAC_TEXT }}>
-                {liveHost} ↗
-              </a>
-            </MetaItem>
-          )}
         </div>
 
         {/* Overview */}
@@ -516,82 +533,62 @@ export default function CaseStudy() {
         )}
 
         {/* Outcome */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "24px 48px", padding: "64px 0 16px" }}>
-          <div style={{ flex: "0 0 200px" }}>
-            <Label>{outcomeNumber} — Outcome</Label>
-          </div>
-          <div style={{ flex: "1 1 320px", display: "flex", flexDirection: "column", gap: 22 }}>
-            <p
-              style={{
-                fontFamily: DISPLAY,
-                fontWeight: 300,
-                fontSize: "clamp(20px, 3vw, 26px)",
-                lineHeight: 1.35,
-                color: INK,
-                margin: 0,
-              }}
-            >
-              {project.outcome}
-            </p>
-            {[
-              ["Learned", project.learned],
-              ["Next", project.next],
-            ]
-              .filter(([, value]) => value)
-              .map(([label, value]) => (
-                <div
-                  key={label}
+        {(project.outcome || project.learned || project.next) && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "24px 48px", padding: "64px 0 16px" }}>
+            <div style={{ flex: "0 0 200px" }}>
+              <Label>{outcomeNumber} — Outcome</Label>
+            </div>
+            <div style={{ flex: "1 1 320px", display: "flex", flexDirection: "column", gap: 22 }}>
+              {project.outcome && (
+                <p
                   style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "6px 16px",
-                    paddingTop: 14,
-                    borderTop: `1px solid ${RULE}`,
+                    fontFamily: DISPLAY,
+                    fontWeight: 300,
+                    fontSize: "clamp(20px, 3vw, 26px)",
+                    lineHeight: 1.35,
+                    color: INK,
+                    margin: 0,
                   }}
                 >
-                  <span
+                  {project.outcome}
+                </p>
+              )}
+              {[
+                ["Learned", project.learned],
+                ["Next", project.next],
+              ]
+                .filter(([, value]) => value)
+                .map(([label, value]) => (
+                  <div
+                    key={label}
                     style={{
-                      flex: "0 0 100px",
-                      fontFamily: MONO,
-                      fontSize: 10,
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      color: MUTED,
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "6px 16px",
+                      paddingTop: 14,
+                      borderTop: `1px solid ${RULE}`,
                     }}
                   >
-                    {label}
-                  </span>
-                  <span style={{ flex: "1 1 240px", fontFamily: MONO, fontSize: 13, lineHeight: 1.75, color: INK }}>
-                    {value}
-                  </span>
-                </div>
-              ))}
-            {(project.figma || project.prototype || project.live || project.github) && (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 12, paddingTop: 6 }}>
-                {project.prototype && (
-                  <a href={project.prototype} target="_blank" rel="noreferrer" style={linkButton(true)}>
-                    View prototype ↗
-                  </a>
-                )}
-                {project.figma && (
-                  <a href={project.figma} target="_blank" rel="noreferrer" style={linkButton(!project.prototype && !project.live)}>
-                    View in Figma ↗
-                  </a>
-                )}
-                {project.live && (
-                  <a href={project.live} target="_blank" rel="noreferrer" style={linkButton(!project.prototype)}>
-                    View live ↗
-                  </a>
-                )}
-                {project.github && (
-                  <a href={project.github} target="_blank" rel="noreferrer" style={linkButton(false)}>
-                    Source on GitHub ↗
-                  </a>
-                )}
-              </div>
-            )}
+                    <span
+                      style={{
+                        flex: "0 0 100px",
+                        fontFamily: MONO,
+                        fontSize: 10,
+                        letterSpacing: "0.22em",
+                        textTransform: "uppercase",
+                        color: MUTED,
+                      }}
+                    >
+                      {label}
+                    </span>
+                    <span style={{ flex: "1 1 240px", fontFamily: MONO, fontSize: 13, lineHeight: 1.75, color: INK }}>
+                      {value}
+                    </span>
+                  </div>
+                ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Footer nav */}
         <div
