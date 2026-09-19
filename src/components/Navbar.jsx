@@ -43,7 +43,7 @@ export default function Navbar() {
       {/* Links */}
       <ul style={{ display: "flex", gap: 36, listStyle: "none", margin: 0, padding: 0, alignItems: "center" }}>
         {LINKS.map(({ label, to }) => {
-          const active = location.pathname === to;
+          const active = location.pathname === to || location.pathname.startsWith(to + "/");
           return (
             <li key={label}>
               <Link to={to} style={{
