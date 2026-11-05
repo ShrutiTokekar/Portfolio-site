@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-sync",
+  "private": true,
+  "type": "module",
+  "description": "Keeps the portfolio in sync with GitHub repos and Figma files. Runs in GitHub Actions.",
+  "scripts": {
+    "github": "node sync.mjs github",
+    "figma": "node sync.mjs figma",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "latest",
+    "sharp": "^0.34.0",
+    "zod": "^3.25.0"
+  }
+}
