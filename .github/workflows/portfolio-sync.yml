@@ -1,0 +1,79 @@
+name: Portfolio sync
+
+# Checks GitHub and Figma every hour and commits any portfolio updates to main.
+# Vercel redeploys the site on every push to main.
+on:
+  schedule:
+    - cron: "17 * * * *" # hourly
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "What to sync"
+        type: choice
+        options: [all, github, figma]
+        default: all
+  # Comments on Figma approval issues (/add or /skip)
+  issue_comment:
+    types: [created]
+
+# One run at a time, so two runs never fight over the same files.
+concurrency:
+  group: portfolio-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  sync:
+    # Scheduled/manual runs, or an /add or /skip from the repo owner on an approval issue.
+    if: >-
+      github.event_name != 'issue_comment' || (
+        contains(github.event.issue.labels.*.name, 'figma-approval') &&
+        github.event.issue.state == 'open' &&
+        github.event.comment.user.login == github.repository_owner &&
+        (startsWith(github.event.comment.body, '/add') || startsWith(github.event.comment.body, '/skip'))
+      )
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install sync dependencies
+        working-directory: scripts/portfolio-sync
+        run: npm install --no-audit --no-fund
+
+      - name: Sync
+        working-directory: scripts/portfolio-sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+          FIGMA_TEAM_IDS: ${{ vars.FIGMA_TEAM_IDS }}
+          FIGMA_PROJECT_IDS: ${{ vars.FIGMA_PROJECT_IDS }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          COMMENT_BODY: ${{ github.event.comment.body }}
+        run: node sync.mjs ${{ github.event_name == 'issue_comment' && 'approve' || inputs.only || 'all' }}
+
+      - name: Commit and push changes
+        if: always()
+        run: |
+          git add -A src/data src/assets/case-studies scripts/portfolio-sync/state.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          # Commit as the repo owner's noreply address so Vercel deploys it.
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+          MSG_FILE=scripts/portfolio-sync/.commit-message
+          [ -f "$MSG_FILE" ] || echo "portfolio-sync: update tracking state" > "$MSG_FILE"
+          git commit -F "$MSG_FILE"
+          git pull --rebase origin "${{ github.event.repository.default_branch }}"
+          git push origin HEAD:"${{ github.event.repository.default_branch }}"

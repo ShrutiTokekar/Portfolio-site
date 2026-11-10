@@ -10,6 +10,12 @@
 // (.png, .jpg, .jpeg, .webp and .avif all work). Until an image exists, a designed
 // stand-in is shown instead.
 
+import generated from "./caseStudies.generated.json";
+
+// Hand-written case studies. Case studies the portfolio-sync bot builds from
+// approved Figma files live in caseStudies.generated.json (and their images in
+// src/assets/case-studies/<slug>/). To take one over by hand, move its entry
+// here and delete it from the JSON file.
 const caseStudies = [
   {
     slug: "flow-state",
@@ -495,6 +501,7 @@ const ORDER = [
   "todo-app",
 ];
 
-export default [...caseStudies].sort(
+// Slugs not listed in ORDER (e.g. newly generated ones) show first, newest first.
+export default [...generated, ...caseStudies].sort(
   (a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug)
 );

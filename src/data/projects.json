@@ -1,0 +1,169 @@
+[
+  {
+    "repo": "ShrutiTokekar/shelf-life",
+    "name": "Shelf Life - Pantry & grocery app",
+    "description": "A local-first pantry app: on-device OCR turns a receipt photo into tracked items, Yjs keeps shared grocery lists in sync in real time, and a Hono API with Gemini ranks recipes by what's about to expire.",
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Yjs",
+      "Tesseract.js",
+      "Hono",
+      "PostgreSQL"
+    ],
+    "link": "https://github.com/ShrutiTokekar/shelf-life",
+    "year": "2026",
+    "category": "Full Stack"
+  },
+  {
+    "repo": "ShrutiTokekar/Flow-state",
+    "name": "Flow State - Task management app",
+    "description": "A full-stack task manager built with Java and React components, featuring a Java Spring Boot backend with RESTful APIs and a React frontend with dynamic task boards and real-time updates.",
+    "techStack": [
+      "Java",
+      "Maven",
+      "Spring Boot",
+      "React",
+      "REST API"
+    ],
+    "link": "https://github.com/ShrutiTokekar/Flow-state",
+    "year": "2026",
+    "category": "Full Stack"
+  },
+  {
+    "repo": "ShrutiTokekar/Refundly",
+    "name": "Refundly - Microservice",
+    "description": "A real-time return fraud detection platform for e-commerce systems built with a Go microservice architecture and a C++ administrative dashboard.",
+    "techStack": [
+      "Go",
+      "Gin",
+      "C++",
+      "Drogon",
+      "PostgreSQL",
+      "Redis",
+      "Docker"
+    ],
+    "link": "https://github.com/ShrutiTokekar/Refundly",
+    "year": "2026",
+    "category": "Backend"
+  },
+  {
+    "repo": "ShrutiTokekar/Skinthesis",
+    "name": "Skinthesis",
+    "description": "Marketing website for Skinthesis, a biotech beauty startup — built with Next.js 14, TypeScript, and Tailwind CSS. Converted from a static HTML/CSS/JS site featuring smooth scroll animations, interactive product UI, and a fully responsive design.",
+    "techStack": [
+      "Next.js 14",
+      "TypeScript",
+      "Tailwind CSS",
+      "React"
+    ],
+    "link": "https://github.com/ShrutiTokekar/Skinthesis",
+    "year": "2026",
+    "category": "Frontend"
+  },
+  {
+    "repo": "ShrutiTokekar/AI-Personal-finance-Zenty",
+    "name": "AI PersonalFinancial Assistant: Zenty",
+    "description": "A Full Stack AI based financial assistant made with python as the backend and nextjs as the frontend. It provides users with personalized financial insights, budgeting tools, and real-time market updates through an intuitive conversational interface.",
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Python",
+      "OpenAI API"
+    ],
+    "link": "https://github.com/ShrutiTokekar/AI-Personal-finance-Zenty",
+    "year": "2025",
+    "category": "Full Stack"
+  },
+  {
+    "repo": "ShrutiTokekar/space-Invaders",
+    "name": "Space invaders game",
+    "description": "A classic space invaders game implemented in C++ using the SDLC library, featuring multiple levels and game state machine.",
+    "techStack": [
+      "C++",
+      "SDL",
+      "Game Development"
+    ],
+    "link": "https://github.com/ShrutiTokekar/space-Invaders",
+    "year": "2024",
+    "category": "Systems"
+  },
+  {
+    "repo": "ShrutiTokekar/Stenography-in-Bmp",
+    "name": "Steganography in BMP",
+    "description": "C program that hides and extracts secret messages within BMP images using least significant bit manipulation.",
+    "techStack": [
+      "C",
+      "File I/O",
+      "Binary"
+    ],
+    "link": "https://github.com/ShrutiTokekar/Stenography-in-Bmp",
+    "year": "2024",
+    "category": "Systems"
+  },
+  {
+    "repo": "ShrutiTokekar/Preemptive-SJF-Scheduler",
+    "name": "Preemptive SJF Scheduler",
+    "description": "OS scheduling algorithm implementation in C with I/O handling, process queues, context switching, and deadline tracking.",
+    "techStack": [
+      "C",
+      "Linux",
+      "OS Concepts"
+    ],
+    "link": "https://github.com/ShrutiTokekar/Preemptive-SJF-Scheduler",
+    "year": "2024",
+    "category": "Systems"
+  },
+  {
+    "repo": "ShrutiTokekar/music-analyzer-backend",
+    "name": "Music Analyzer Backend",
+    "description": "PHP-based backend for a music analytics platform with RESTful API endpoints, Docker containerization, and MySQL.",
+    "techStack": [
+      "PHP",
+      "MySQL",
+      "Docker",
+      "REST API"
+    ],
+    "link": "https://github.com/ShrutiTokekar/music-analyzer-backend",
+    "year": "2023",
+    "category": "Backend"
+  },
+  {
+    "repo": "ShrutiTokekar/StudentManagementSystem",
+    "name": "Student Management System",
+    "description": "Java-based system to manage student records with full CRUD operations and data visualization.",
+    "techStack": [
+      "Java",
+      "MySQL"
+    ],
+    "link": "https://github.com/ShrutiTokekar/StudentManagementSystem",
+    "year": "2023",
+    "category": "Backend"
+  },
+  {
+    "repo": "ShrutiTokekar/OnlineShoppingsystem",
+    "name": "Online Shopping System",
+    "description": "A Java application designed to provide an interactive platform for online shopping. Users can register, browse products, manage their shopping carts, and process orders through a console-based interface.",
+    "techStack": [
+      "Java",
+      "MySQL"
+    ],
+    "link": "https://github.com/ShrutiTokekar/OnlineShoppingsystem",
+    "year": "2022",
+    "category": "Backend"
+  },
+  {
+    "repo": "ShrutiTokekar/Todolist",
+    "name": "TO-do List",
+    "description": "Simple to-do list built using HTML, CSS, and JavaScript that allows users to add, edit, and delete tasks with a clean interface.",
+    "techStack": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "link": "https://github.com/ShrutiTokekar/Todolist",
+    "year": "2022",
+    "category": "Frontend"
+  }
+]
