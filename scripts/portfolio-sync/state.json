@@ -1,1 +1,87 @@
-{ "bootstrapped": { "github": false, "figma": false }, "github": {}, "figma": {} }
+{
+  "bootstrapped": {
+    "github": true,
+    "figma": false
+  },
+  "github": {
+    "ShrutiTokekar/AI-Personal-finance-Zenty": {
+      "readmeSha": "930449175a139b38b50ab5d772d43a0952d9aa4a",
+      "onSite": true,
+      "createdAt": "2026-01-15T03:43:18Z",
+      "pushedAt": "2026-11-05T02:53:09Z"
+    },
+    "ShrutiTokekar/Flow-state": {
+      "readmeSha": "9e04d0509de6bdfe486a9dcdb389194bd1210205",
+      "onSite": true,
+      "createdAt": "2026-03-02T03:17:55Z",
+      "pushedAt": "2026-09-23T00:02:42Z"
+    },
+    "ShrutiTokekar/music-analyzer-backend": {
+      "readmeSha": "c99fe1fef31e19602c9278533f67a5a3ebc9d190",
+      "onSite": true,
+      "createdAt": "2025-05-04T21:02:56Z",
+      "pushedAt": "2025-05-04T23:33:38Z"
+    },
+    "ShrutiTokekar/OnlineShoppingsystem": {
+      "readmeSha": "00f608f1fd9afc8c9c2e0fb09f21c4fbaffc280a",
+      "onSite": true,
+      "createdAt": "2024-10-29T19:52:18Z",
+      "pushedAt": "2024-10-29T23:39:51Z"
+    },
+    "ShrutiTokekar/Preemptive-SJF-Scheduler": {
+      "readmeSha": null,
+      "onSite": true,
+      "createdAt": "2025-05-06T04:04:32Z",
+      "pushedAt": "2025-05-06T04:10:32Z"
+    },
+    "ShrutiTokekar/Refundly": {
+      "readmeSha": "9cb23dba47a94a20c0f78185c3c7752f32e783b4",
+      "onSite": true,
+      "createdAt": "2026-05-11T04:13:59Z",
+      "pushedAt": "2026-11-03T20:14:59Z"
+    },
+    "ShrutiTokekar/shelf-life": {
+      "readmeSha": "54828f1c14213dce837cf2092194b425184ed839",
+      "onSite": true,
+      "createdAt": "2026-09-27T18:58:34Z",
+      "pushedAt": "2026-11-08T20:39:57Z"
+    },
+    "ShrutiTokekar/Skinthesis": {
+      "readmeSha": "03c8f79947b73519b060bea221c51d0dbf25b88e",
+      "onSite": true,
+      "createdAt": "2026-05-01T15:51:29Z",
+      "pushedAt": "2026-05-05T19:21:44Z"
+    },
+    "ShrutiTokekar/space-Invaders": {
+      "readmeSha": "db20014527dfec5d51443510e5a5e207d6b95a19",
+      "onSite": true,
+      "createdAt": "2026-01-28T05:22:25Z",
+      "pushedAt": "2026-01-28T05:29:46Z"
+    },
+    "ShrutiTokekar/Stenography-in-Bmp": {
+      "readmeSha": "c5a10abdcd991a37ebe847f1c9d7db4c7837b087",
+      "onSite": true,
+      "createdAt": "2025-05-06T03:51:45Z",
+      "pushedAt": "2025-05-06T04:03:57Z"
+    },
+    "ShrutiTokekar/StudentManagementSystem": {
+      "readmeSha": "84882581761fb332d343465ffdcbb762498b6733",
+      "onSite": true,
+      "createdAt": "2024-10-29T23:26:02Z",
+      "pushedAt": "2024-10-29T23:28:20Z"
+    },
+    "ShrutiTokekar/Todolist": {
+      "readmeSha": "758c38709038c1818e324f5de2b5f47fa92132df",
+      "onSite": true,
+      "createdAt": "2024-10-29T22:44:07Z",
+      "pushedAt": "2024-10-29T22:48:18Z"
+    },
+    "ShrutiTokekar/Portfolio": {
+      "readmeSha": "2234fb9e3ae73e72e40974fac0d58038506c6100",
+      "onSite": true,
+      "createdAt": "2024-10-29T20:07:29Z",
+      "pushedAt": "2025-02-26T02:20:11Z"
+    }
+  },
+  "figma": {}
+}
