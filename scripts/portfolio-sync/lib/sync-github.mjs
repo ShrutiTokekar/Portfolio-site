@@ -13,27 +13,40 @@ export async function syncGithub() {
   const cardFor = (fullName) => projects.find((p) => sameRepo(p.repo, fullName));
   let changed = false;
 
-  // First run: remember every repo that already exists so only repos created
-  // from now on get new cards, and existing cards keep your wording until
-  // their README actually changes.
+  // First run: remember the repos that are already on the site, so their
+  // cards keep your wording until their README actually changes.
+  // With catchUpOnFirstRun, existing repos that aren't on the site yet are
+  // left unrecorded, so the loop below adds them like brand-new repos (once).
+  // Without it, they're recorded too and only repos created later get cards.
   if (!state.bootstrapped.github) {
+    const catchUp = config.catchUpOnFirstRun !== false;
+    const missing = [];
     for (const repo of repos) {
+      const onSite = Boolean(cardFor(repo.full_name));
+      if (!onSite && !ignored.has(repo.name.toLowerCase())) missing.push(repo.name);
+      if (!onSite && catchUp) continue;
       const readme = await getReadme(repo.full_name);
       state.github[repo.full_name] = {
         readmeSha: readme?.sha ?? null,
-        onSite: Boolean(cardFor(repo.full_name)),
+        onSite,
         createdAt: repo.created_at,
         pushedAt: repo.pushed_at,
       };
     }
     state.bootstrapped.github = true;
-    const skipped = repos.filter((r) => !cardFor(r.full_name)).map((r) => r.name);
     logChange(
       `Started tracking ${repos.length} GitHub repos.` +
-        (skipped.length ? ` Existing repos not on the site (left off): ${skipped.join(", ")}.` : "")
+        (missing.length
+          ? catchUp
+            ? ` Catching up: adding cards for ${missing.join(", ")}.`
+            : ` Existing repos not on the site (left off): ${missing.join(", ")}.`
+          : "")
     );
-    saveState(state);
-    return true;
+    changed = true;
+    if (!catchUp) {
+      saveState(state);
+      return true;
+    }
   }
 
   for (const repo of repos) {

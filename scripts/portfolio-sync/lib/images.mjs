@@ -68,12 +68,13 @@ const step = (buf) =>
  */
 export async function buildCaseImages(slug, picks, pngs, background, { write = true } = {}) {
   await loadSharp();
-  const get = (frames) => frames.map((f) => pngs[f.id]).filter(Boolean);
+  const ref = (f) => f.ref ?? f.id;
+  const get = (frames) => frames.map((f) => pngs[ref(f)]).filter(Boolean);
   const out = {};
   if (get(picks.cover).length) out.cover = await board(get(picks.cover), COVER, background);
   if (get(picks.hero).length) out.hero = await board(get(picks.hero), HERO, background);
   for (const [i, f] of picks.steps.entries()) {
-    if (pngs[f.id]) out[`step-${i + 1}`] = await step(pngs[f.id]);
+    if (pngs[ref(f)]) out[`step-${i + 1}`] = await step(pngs[ref(f)]);
   }
   if (write) {
     const dir = path.join(paths.caseImagesDir, slug);

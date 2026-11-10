@@ -60,3 +60,37 @@ test("inspectNodes collects text, ranks colors and fonts", () => {
   assert.equal(out.colors[0], "#000000");
   assert.deepEqual(out.fonts, ["Poppins", "Lora"]);
 });
+
+import { figmaKeysIn, flowNodes } from "../lib/figma.mjs";
+
+test("figmaKeysIn finds board and design links in an /add comment", () => {
+  const note = `/add
+Category: UI/UX
+Flow: https://www.figma.com/board/AbC123xyz/Munchies-user-flow?node-id=0-1
+also https://www.figma.com/design/Def456/munchies and again https://www.figma.com/board/AbC123xyz/x`;
+  assert.deepEqual(figmaKeysIn(note), ["AbC123xyz", "Def456"]);
+  assert.deepEqual(figmaKeysIn("/add just notes"), []);
+});
+
+test("flowNodes renders the largest sections, or the whole page when there are none", () => {
+  const section = (id, w, h) => ({ id, name: id, type: "SECTION", absoluteBoundingBox: { x: 0, y: 0, width: w, height: h } });
+  const withSections = { document: { children: [{ id: "0:1", name: "Page 1", children: [
+    section("small", 400, 300), section("big", 3000, 2000), section("mid", 1200, 900), section("tiny", 100, 50),
+    { id: "s1", type: "STICKY", characters: "Start" },
+  ] }] } };
+  assert.deepEqual(flowNodes(withSections).map((n) => n.id), ["big", "mid"]);
+
+  const loose = { document: { children: [{ id: "0:1", name: "Page 1", children: [{ id: "s1", type: "STICKY" }] }] } };
+  const [whole] = flowNodes(loose);
+  assert.equal(whole.id, "0:1");
+  assert.equal(whole.wholePage, true);
+});
+
+test("inspectNodes reads FigJam sticky and shape text", () => {
+  const out = inspectNodes([{ children: [
+    { type: "STICKY", characters: "User opens app" },
+    { type: "SHAPE_WITH_TEXT", characters: "Logged in?" },
+    { type: "CONNECTOR", characters: "yes" },
+  ] }]);
+  assert.deepEqual(out.texts, ["User opens app", "Logged in?", "yes"]);
+});

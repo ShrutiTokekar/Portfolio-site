@@ -1,8 +1,23 @@
 {
   "owner": "ShrutiTokekar",
   "siteUrl": "https://shrutitokekar.com",
-  "ignoreRepos": ["ShrutiTokekar", "Portfolio-site"],
-  "githubCategories": ["Full Stack", "Backend", "Systems", "Frontend"],
-  "designCategories": ["Web Design", "UI/UX", "Creative Tech", "Brand Identity"],
+  "catchUpOnFirstRun": true,
+  "ignoreRepos": [
+    "ShrutiTokekar",
+    "Portfolio-site",
+    "m4l1_managing_a_project"
+  ],
+  "githubCategories": [
+    "Full Stack",
+    "Backend",
+    "Systems",
+    "Frontend"
+  ],
+  "designCategories": [
+    "Web Design",
+    "UI/UX",
+    "Creative Tech",
+    "Brand Identity"
+  ],
   "model": "claude-opus-5-5"
 }

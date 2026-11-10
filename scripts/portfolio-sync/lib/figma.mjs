@@ -42,7 +42,37 @@ export async function listFiles() {
 export const fileUrl = (key) => `https://www.figma.com/design/${key}`;
 
 /** File metadata plus the shallow node tree (pages → frames → section children). */
-export const getFile = (key) => figma(`/files/${key}?depth=3`);
+export const getFile = (key, depth = 3) => figma(`/files/${key}?depth=${depth}`);
+
+/** "figma" for design files, "figjam" for boards, "slides" for decks. */
+export async function editorType(key) {
+  const file = await getFile(key, 1);
+  return file.editorType ?? "figma";
+}
+
+/** Figma file keys from any figma.com links in a piece of text. */
+export function figmaKeysIn(text = "") {
+  const keys = [...text.matchAll(/figma\.com\/(?:board|file|design|proto)\/([A-Za-z0-9]+)/g)].map((m) => m[1]);
+  return [...new Set(keys)];
+}
+
+/**
+ * The parts of a FigJam board to show as user-flow images: each top-level
+ * Section (largest first, at most `max`), or the whole first page when the
+ * board has no sections.
+ */
+export function flowNodes(file, max = 2) {
+  const page = file.document.children?.[0];
+  if (!page) return [];
+  const sections = (page.children ?? [])
+    .filter((n) => n.type === "SECTION" && n.visible !== false && n.absoluteBoundingBox)
+    .map((n) => ({ id: n.id, name: n.name, ...n.absoluteBoundingBox }))
+    .filter((n) => n.width >= 300 && n.height >= 200)
+    .sort((a, b) => b.width * b.height - a.width * a.height)
+    .slice(0, max);
+  if (sections.length) return sections;
+  return [{ id: page.id, name: page.name, width: 4000, height: 3000, wholePage: true }];
+}
 
 /** Full subtrees for specific nodes. */
 export async function getNodes(key, ids) {
@@ -130,9 +160,10 @@ export function inspectNodes(nodes) {
         colorCount.set(hex, (colorCount.get(hex) ?? 0) + 1);
       }
     }
+    // TEXT layers, plus FigJam stickies, shapes and connectors with labels.
+    const t = typeof n.characters === "string" ? n.characters.trim() : "";
+    if (t && !texts.includes(t)) texts.push(t);
     if (n.type === "TEXT") {
-      const t = (n.characters ?? "").trim();
-      if (t && !texts.includes(t)) texts.push(t);
       const family = n.style?.fontFamily;
       if (family) fontCount.set(family, (fontCount.get(family) ?? 0) + t.length);
     }

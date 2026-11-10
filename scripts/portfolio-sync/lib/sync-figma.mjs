@@ -3,7 +3,7 @@
 // File already added by the bot and edited in Figma → images re-exported.
 import fs from "node:fs";
 import { config, paths, readJson, writeJson, loadState, saveState, slugify, logChange, DRY_RUN } from "./common.mjs";
-import { listFiles, getFile, getNodes, exportFrames, topLevelFrames, pickFrames, inspectNodes, fileUrl } from "./figma.mjs";
+import { listFiles, getFile, getNodes, exportFrames, topLevelFrames, pickFrames, inspectNodes, fileUrl, editorType, figmaKeysIn, flowNodes } from "./figma.mjs";
 import { buildCaseImages, forVision } from "./images.mjs";
 import { writeCaseStudy } from "./ai.mjs";
 import { ensureLabel, createIssue, commentOnIssue, closeIssue } from "./github.mjs";
@@ -27,28 +27,43 @@ export async function syncFigma() {
   const manual = manualFigmaKeys();
   let changed = false;
 
+  // First run: files already on the site are recorded as "manual" and never
+  // touched. With catchUpOnFirstRun, every other existing file is left
+  // unrecorded so the loop below offers it like a brand-new file (once).
   if (!state.bootstrapped.figma) {
+    const catchUp = config.catchUpOnFirstRun !== false;
     for (const f of files) {
-      state.figma[f.key] = { name: f.name, status: manual.has(f.key) ? "manual" : "existing", lastModified: f.last_modified };
+      if (manual.has(f.key)) state.figma[f.key] = { name: f.name, status: "manual", lastModified: f.last_modified };
+      else if (!catchUp) state.figma[f.key] = { name: f.name, status: "existing", lastModified: f.last_modified };
     }
     state.bootstrapped.figma = true;
-    logChange(`Started tracking ${files.length} Figma files (existing files are not offered).`);
+    logChange(
+      `Started tracking ${files.length} Figma files` +
+        (catchUp ? "; asking about the existing ones that aren't on the site yet." : " (existing files are not offered).")
+    );
     saveState(state);
-    return true;
+    changed = true;
+    if (!catchUp) return true;
   }
 
   for (const f of files) {
     const known = state.figma[f.key];
 
     if (!known) {
+      const type = manual.has(f.key) ? "figma" : await editorType(f.key);
       if (manual.has(f.key)) {
         state.figma[f.key] = { name: f.name, status: "manual", lastModified: f.last_modified };
+      } else if (type !== "figma") {
+        // FigJam boards (and Slides) don't get their own issue. A board is
+        // attached to a case study by pasting its link after /add.
+        state.figma[f.key] = { name: f.name, status: type, lastModified: f.last_modified };
       } else if (!DRY_RUN) {
         await ensureLabel(LABEL, "a259ff", "New Figma file waiting for a yes/no");
         const issue = await createIssue(`New Figma file: ${f.name}. Add it to the portfolio?`, approvalBody(f), [LABEL]);
         state.figma[f.key] = { name: f.name, status: "pending", issue: issue.number, lastModified: f.last_modified };
         saveState(state); // save right away so a later failure can't cause a duplicate issue
         logChange(`Asked about new Figma file "${f.name}" (issue #${issue.number})`);
+        await new Promise((r) => setTimeout(r, 1500)); // stay under GitHub's issue-creation rate limit
       } else {
         console.log(`[dry run] would open an approval issue for "${f.name}"`);
       }
@@ -81,6 +96,13 @@ Anything you write after \`/add\` is used as background for the case study, for 
 /add
 Category: UI/UX
 A class project: a budgeting app for students who share rent. I did the research, flows and hi-fi screens.
+\`\`\`
+
+**User flow in FigJam?** Paste the board's link in the same comment and it's added as a "User flow" step before the screens (one image per Section on the board):
+
+\`\`\`
+/add
+https://www.figma.com/board/AbC123/My-app-user-flow
 \`\`\`
 
 **Reply \`/skip\` to leave it off.**
@@ -166,12 +188,19 @@ export async function buildCaseStudy(key, notes = "") {
   const [pngs, nodes] = await Promise.all([exportFrames(key, allPicked), getNodes(key, allPicked.map((f) => f.id))]);
   const { texts, colors, fonts } = inspectNodes(nodes);
 
+  // FigJam boards linked in the /add comment become "User flow" steps up front.
+  const flows = await loadFlows(figmaKeysIn(notes).filter((k) => k !== key));
+  Object.assign(pngs, flows.pngs);
+  picks.steps = [...flows.steps, ...picks.steps];
+
   const vision = async (label, frame) =>
-    pngs[frame.id] ? { label, base64: (await forVision(pngs[frame.id])).toString("base64") } : null;
+    pngs[frame.ref ?? frame.id] ? { label, base64: (await forVision(pngs[frame.ref ?? frame.id])).toString("base64") } : null;
   const images = (
     await Promise.all([
       vision("COVER", picks.cover[0]),
-      ...picks.steps.map((f, i) => vision(`STEP ${i + 1} (frame "${f.name}")`, f)),
+      ...picks.steps.map((f, i) =>
+        vision(f.flowBoard ? `STEP ${i + 1} (user flow from the FigJam board "${f.flowBoard}")` : `STEP ${i + 1} (frame "${f.name}")`, f)
+      ),
     ])
   ).filter(Boolean);
 
@@ -179,12 +208,13 @@ export async function buildCaseStudy(key, notes = "") {
     fileName: file.name,
     notes,
     texts,
+    flowTexts: flows.texts,
     colors,
     fonts,
     images,
     example: exampleCaseStudy(),
     stepCount: picks.steps.length,
-    stepNames: picks.steps.map((f) => f.name),
+    stepNames: picks.steps.map((f) => (f.flowBoard ? "User flow" : f.name)),
   });
 
   const slug = uniqueSlug(slugify(written.title));
@@ -224,7 +254,12 @@ export async function buildCaseStudy(key, notes = "") {
     next: "",
     generatedFrom: {
       figmaKey: key,
-      frames: { cover: picks.cover.map((f) => f.id), hero: picks.hero.map((f) => f.id), steps: picks.steps.map((f) => f.id) },
+      frames: {
+        cover: picks.cover.map((f) => f.id),
+        hero: picks.hero.map((f) => f.id),
+        steps: picks.steps.filter((f) => !f.flowBoard).map((f) => f.id),
+      },
+      flows: flows.boards, // FigJam boards rendered as the leading "User flow" steps
     },
   };
 
@@ -254,5 +289,46 @@ async function refreshImages(key, entry) {
   };
   const all = [...new Map([...picks.cover, ...picks.hero, ...picks.steps].map((f) => [f.id, f])).values()];
   const pngs = await exportFrames(key, all);
+  // Re-render linked FigJam flows too, keeping them as the leading steps.
+  const flows = await loadFlows(study.generatedFrom.flows ?? []);
+  Object.assign(pngs, flows.pngs);
+  picks.steps = [...flows.steps, ...picks.steps];
   if (!DRY_RUN) await buildCaseImages(entry.slug, picks, pngs, study.palette.bg);
+}
+
+/**
+ * Render FigJam boards as "User flow" steps (one image per top-level Section,
+ * at most two in total).
+ * @returns {Promise<{ steps: object[], pngs: Record<string, Buffer>, texts: string[], boards: string[] }>}
+ */
+async function loadFlows(keys) {
+  const out = { steps: [], pngs: {}, texts: [], boards: [] };
+  for (const boardKey of keys) {
+    if (out.steps.length >= 2) break;
+    let board;
+    try {
+      board = await getFile(boardKey, 2);
+    } catch (err) {
+      console.warn(`Couldn't open linked Figma file ${boardKey}:`, err.message);
+      continue;
+    }
+    if (board.editorType !== "figjam") continue; // only boards become flow steps
+    const nodes = flowNodes(board, 2 - out.steps.length);
+    // Boards are big: width > 1000 makes exportFrames render them at 1x.
+    const rendered = await exportFrames(boardKey, nodes.map((n) => ({ ...n, width: Math.max(n.width, 1001) })));
+    for (const n of nodes) {
+      if (!rendered[n.id]) {
+        console.warn(`Figma couldn't render "${n.name}" on "${board.name}". Wrapping the flow in a Section usually fixes this.`);
+        continue;
+      }
+      // Node ids repeat across files, so key flow images by board too.
+      const ref = `${boardKey}/${n.id}`;
+      out.pngs[ref] = rendered[n.id];
+      out.steps.push({ ...n, ref, flowBoard: board.name });
+    }
+    out.texts.push(...inspectNodes(await getNodes(boardKey, nodes.map((n) => n.id))).texts);
+    out.boards.push(boardKey);
+  }
+  out.texts = out.texts.slice(0, 150);
+  return out;
 }

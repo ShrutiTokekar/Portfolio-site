@@ -167,6 +167,7 @@ const CASE_SYSTEM = `You write short UX case studies for a designer-developer's 
 You get screenshots of the file's frames (labelled COVER, HERO, STEP 1..n), the text found on those frames, the colors and fonts used, and optional notes from the designer.
 Write in the same voice as the example case study: first person, plain and specific, short sentences, no buzzwords, no emoji. Only claim what the screens and notes support; don't invent research, metrics or user quotes. If the designer's notes contradict the screens, trust the notes.
 The process array must have exactly one step per STEP image, in order, each describing what that image shows.
+Some STEP images may be user flows from a FigJam board (they say so in their label). For those, label the step "User flow" (or similar) and summarise the flow's main paths and decision points, using the FigJam text provided.
 For designSystem.colors, give the main brand colors with friendly names (e.g. "Terracotta"), using hex values from the provided list. For fonts, use the families provided and name their role (Display, Headings, Body, Interface).`;
 
 /**
@@ -189,6 +190,7 @@ export async function writeCaseStudy(input) {
       `Fonts used: ${input.fonts.join(", ") || "(unknown)"}`,
       `Colors used (most used first): ${input.colors.join(", ")}`,
       `Text on the frames:\n${input.texts.join("\n") || "(none)"}`,
+      ...(input.flowTexts?.length ? [`Text on the FigJam user flow:\n${input.flowTexts.join("\n")}`] : []),
       "",
       "Example case study from the same site, for voice and length:",
       input.example,
