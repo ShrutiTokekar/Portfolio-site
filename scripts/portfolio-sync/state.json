@@ -1,7 +1,7 @@
 {
   "bootstrapped": {
     "github": true,
-    "figma": false
+    "figma": true
   },
   "github": {
     "ShrutiTokekar/AI-Personal-finance-Zenty": {
@@ -83,5 +83,77 @@
       "pushedAt": "2025-02-26T02:20:11Z"
     }
   },
-  "figma": {}
+  "figma": {
+    "YKhfy8TsNdx6pIo9gK29Y0": {
+      "name": "Munchies - Shruti Tokekar",
+      "status": "manual",
+      "lastModified": "2026-11-10T17:32:51Z"
+    },
+    "Mr5u4PhY3hIWfvGRFWWMkf": {
+      "name": "Shelf Life — Hi-Fi Wireframes",
+      "status": "manual",
+      "lastModified": "2026-11-10T16:27:23Z"
+    },
+    "2aOrsKBYwiidxrcDnIxt6s": {
+      "name": "Thrift Trail — Hi-Fi Wireframes",
+      "status": "manual",
+      "lastModified": "2026-11-10T16:27:40Z"
+    },
+    "moR93Ms00a7XKE2YRnnyz1": {
+      "name": "travel app wireframe",
+      "status": "manual",
+      "lastModified": "2026-10-06T01:45:55Z"
+    },
+    "dIFgbHWB2MuzHU73OKLNGj": {
+      "name": "GUI mockup",
+      "status": "pending",
+      "issue": 7,
+      "lastModified": "2026-04-01T06:53:13Z"
+    },
+    "WlyuEj4bEaSm2G6DdP6Y8m": {
+      "name": "Munchies User Flow",
+      "status": "figjam",
+      "lastModified": "2026-11-10T17:33:01Z"
+    },
+    "g51vmNMDyRhRMiA1wX6ubv": {
+      "name": "Shelf Life user flow",
+      "status": "figjam",
+      "lastModified": "2026-11-10T16:27:31Z"
+    },
+    "AyY62guxAG6Bl3Tend8Xwo": {
+      "name": "Uber Redesign - Shruti Tokekar",
+      "status": "pending",
+      "issue": 8,
+      "lastModified": "2026-11-10T16:29:08Z"
+    },
+    "dHYuFplKdkTg8U5PGHtB0R": {
+      "name": "Untitled",
+      "status": "pending",
+      "issue": 9,
+      "lastModified": "2025-05-04T19:28:01Z"
+    },
+    "iy5PVs3AtjVepW12Foh7s5": {
+      "name": "Untitled",
+      "status": "pending",
+      "issue": 10,
+      "lastModified": "2026-09-18T21:25:21Z"
+    },
+    "aIWiQ2Ifigq8YnHiKJBMCG": {
+      "name": "Waypoint — UX Process &amp; Documentation",
+      "status": "pending",
+      "issue": 11,
+      "lastModified": "2026-11-10T16:28:08Z"
+    },
+    "wIYw0DAjsFgOWuF4OI28cr": {
+      "name": "shruti tokekar's team library",
+      "status": "pending",
+      "issue": 12,
+      "lastModified": "2025-04-22T16:24:24Z"
+    },
+    "N4nn09NQONWi3etl1GoHca": {
+      "name": "uber(holiday redesign) - Shruti Tokekar",
+      "status": "figjam",
+      "lastModified": "2026-11-10T16:28:38Z"
+    }
+  }
 }
