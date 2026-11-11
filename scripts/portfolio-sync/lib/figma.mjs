@@ -17,10 +17,27 @@ async function figma(pathname) {
   }
 }
 
+/**
+ * IDs from a comma-separated setting. Each entry can be the bare number or a
+ * pasted Figma URL, e.g. https://www.figma.com/files/team/123/all-folders
+ * (kind "team") or https://www.figma.com/files/project/456 (kind "project").
+ */
+export function parseIds(value = "", kind) {
+  return value
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => s.match(new RegExp(`/${kind}/(\\d+)`))?.[1] ?? s.match(/^\d+$/)?.[0])
+    .filter(Boolean);
+}
+
 /** Project IDs to watch: FIGMA_PROJECT_IDS, or every project in FIGMA_TEAM_IDS. */
 async function projectIds() {
-  const explicit = (process.env.FIGMA_PROJECT_IDS ?? "").split(",").map((s) => s.trim()).filter(Boolean);
-  const teams = (process.env.FIGMA_TEAM_IDS ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+  const explicit = parseIds(process.env.FIGMA_PROJECT_IDS, "project");
+  const teams = parseIds(process.env.FIGMA_TEAM_IDS, "team");
+  if (!explicit.length && !teams.length) {
+    throw new Error("Set FIGMA_TEAM_IDS (or FIGMA_PROJECT_IDS) to a Figma team number or URL.");
+  }
   const ids = [...explicit];
   for (const team of teams) {
     const { projects } = await figma(`/teams/${team}/projects`);

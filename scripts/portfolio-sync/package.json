@@ -9,8 +9,8 @@
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "latest",
+    "@anthropic-ai/sdk": "^1.8.0",
     "sharp": "^0.34.0",
-    "zod": "^3.25.0"
+    "zod": "^4.1.0"
   }
 }

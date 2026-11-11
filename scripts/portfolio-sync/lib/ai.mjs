@@ -36,7 +36,7 @@ async function ask({ system, content, schemaName, effort }) {
 
 // ── GitHub repo → project card ───────────────────────────────────────────────
 
-function buildSchemas(z) {
+export function buildSchemas(z) {
 const RepoCard = z.object({
   name: z.string().describe("Card title, e.g. 'Shelf Life - Pantry & grocery app'"),
   description: z.string().describe("1-2 sentences, under 260 characters"),
