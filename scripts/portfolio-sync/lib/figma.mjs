@@ -1,6 +1,6 @@
 // Figma REST API: list files, pick the frames worth showing, export them,
 // and pull out text, colors and fonts for the case study writer.
-const API = "https://api.figma.com/v1";
+const API = "https://api.figma.com";
 
 async function figma(pathname) {
   const token = process.env.FIGMA_TOKEN;
@@ -20,46 +20,83 @@ async function figma(pathname) {
 /**
  * IDs from a comma-separated setting. Each entry can be the bare number or a
  * pasted Figma URL, e.g. https://www.figma.com/files/team/123/all-folders
- * (kind "team") or https://www.figma.com/files/project/456 (kind "project").
+ * (kind "team") or https://www.figma.com/files/project/456 (kind "folder").
  */
 export function parseIds(value = "", kind) {
+  const kinds = kind === "folder" ? "(?:folder|project)" : kind;
   return value
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean)
-    .map((s) => s.match(new RegExp(`/${kind}/(\\d+)`))?.[1] ?? s.match(/^\d+$/)?.[0])
+    .map((s) => s.match(new RegExp(`/${kinds}/(\\d+)`))?.[1] ?? s.match(/^\d+$/)?.[0])
     .filter(Boolean);
 }
 
-/** Project IDs to watch: FIGMA_PROJECT_IDS, or every project in FIGMA_TEAM_IDS. */
-async function projectIds() {
-  const explicit = parseIds(process.env.FIGMA_PROJECT_IDS, "project");
+const isScopeOrMissing = (err) => / → (403|404):/.test(err.message);
+const idsOf = (list = []) => list.map((f) => String(f.id));
+
+/**
+ * Folder IDs to watch: FIGMA_PROJECT_IDS (folders, including their subfolders),
+ * or every folder in FIGMA_TEAM_IDS. Uses Figma's folder endpoints
+ * (`folders:read` scope); falls back to the deprecated project endpoints for
+ * older tokens that only have `projects:read`.
+ */
+async function folderIds() {
+  const explicit = parseIds(process.env.FIGMA_PROJECT_IDS, "folder");
   const teams = parseIds(process.env.FIGMA_TEAM_IDS, "team");
   if (!explicit.length && !teams.length) {
     throw new Error("Set FIGMA_TEAM_IDS (or FIGMA_PROJECT_IDS) to a Figma team number or URL.");
   }
-  const ids = [...explicit];
+  const top = [...explicit];
   for (const team of teams) {
-    const { projects } = await figma(`/teams/${team}/projects`);
-    ids.push(...projects.map((p) => String(p.id)));
+    try {
+      const data = await figma(`/v2/teams/${team}/folders`);
+      top.push(...idsOf(data.folders ?? data.projects));
+    } catch (err) {
+      if (!isScopeOrMissing(err)) throw err;
+      const data = await figma(`/v1/teams/${team}/projects`);
+      top.push(...idsOf(data.projects));
+    }
   }
-  return [...new Set(ids)];
+  // Walk subfolders (breadth-first) so files nested in folders are found too.
+  const seen = new Set();
+  const queue = [...top];
+  while (queue.length) {
+    const id = queue.shift();
+    if (seen.has(id)) continue;
+    seen.add(id);
+    try {
+      const data = await figma(`/v2/folders/${id}/folders`);
+      queue.push(...idsOf(data.folders));
+    } catch (err) {
+      if (!isScopeOrMissing(err)) throw err; // older tokens: no subfolder listing
+    }
+  }
+  return [...seen];
 }
 
-/** Every design file in the watched projects: { key, name, last_modified, thumbnail_url }. */
+async function filesIn(folderId) {
+  try {
+    const data = await figma(`/v2/folders/${folderId}/files`);
+    return data.files ?? [];
+  } catch (err) {
+    if (!isScopeOrMissing(err)) throw err;
+    const data = await figma(`/v1/projects/${folderId}/files`);
+    return data.files ?? [];
+  }
+}
+
+/** Every file in the watched folders: { key, name, last_modified, thumbnail_url }. */
 export async function listFiles() {
   const files = [];
-  for (const id of await projectIds()) {
-    const data = await figma(`/projects/${id}/files`);
-    files.push(...data.files);
-  }
-  return files;
+  for (const id of await folderIds()) files.push(...(await filesIn(id)));
+  return [...new Map(files.map((f) => [f.key, f])).values()];
 }
 
 export const fileUrl = (key) => `https://www.figma.com/design/${key}`;
 
 /** File metadata plus the shallow node tree (pages → frames → section children). */
-export const getFile = (key, depth = 3) => figma(`/files/${key}?depth=${depth}`);
+export const getFile = (key, depth = 3) => figma(`/v1/files/${key}?depth=${depth}`);
 
 /** "figma" for design files, "figjam" for boards, "slides" for decks. */
 export async function editorType(key) {
@@ -93,7 +130,7 @@ export function flowNodes(file, max = 2) {
 
 /** Full subtrees for specific nodes. */
 export async function getNodes(key, ids) {
-  const data = await figma(`/files/${key}/nodes?ids=${encodeURIComponent(ids.join(","))}`);
+  const data = await figma(`/v1/files/${key}/nodes?ids=${encodeURIComponent(ids.join(","))}`);
   return ids.map((id) => data.nodes[id]?.document).filter(Boolean);
 }
 
@@ -105,7 +142,7 @@ export async function exportFrames(key, frames) {
     const batch = frames.filter((f) => (scale === 2) === (f.width <= 1000));
     if (!batch.length) continue;
     const ids = batch.map((f) => f.id).join(",");
-    const { images, err } = await figma(`/images/${key}?ids=${encodeURIComponent(ids)}&format=png&scale=${scale}`);
+    const { images, err } = await figma(`/v1/images/${key}?ids=${encodeURIComponent(ids)}&format=png&scale=${scale}`);
     if (err) throw new Error(`Figma export failed: ${err}`);
     for (const [id, url] of Object.entries(images)) {
       if (!url) continue;
