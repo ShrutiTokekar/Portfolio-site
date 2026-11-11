@@ -137,7 +137,20 @@ export async function handleApprovalComment() {
   }
 
   const notes = body.replace(/^\/add\b/i, "").trim();
-  const study = await buildCaseStudy(key, notes);
+  let study;
+  try {
+    study = await buildCaseStudy(key, notes);
+  } catch (err) {
+    // Tell the person on the issue instead of failing silently in the logs.
+    if (!DRY_RUN) {
+      await commentOnIssue(
+        issueNumber,
+        `Sorry, I couldn't build this case study: \`${String(err.message).slice(0, 300)}\`\n\n` +
+          "The issue stays open. Reply `/add` again to retry once it's fixed."
+      ).catch(() => {});
+    }
+    throw err;
+  }
   entry.status = "added";
   entry.slug = study.slug;
   entry.frames = study.generatedFrom.frames;
