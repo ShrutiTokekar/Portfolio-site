@@ -156,14 +156,26 @@ export async function exportFrames(key, frames) {
 // ── Picking frames ───────────────────────────────────────────────────────────
 
 const FRAME_TYPES = new Set(["FRAME", "COMPONENT", "COMPONENT_SET", "INSTANCE"]);
-const SKIP_NAME = /^(cover|thumbnail)$|archive|old|scratch|unused|component|styles?|tokens?|colou?rs?|typography|icons?/i;
+// Boards that aren't product screens: style guides, component sheets, old
+// versions, scratch space. Whole words only, so "Bold" or "Golden" don't match.
+const SKIP_NAME =
+  /^(cover|thumbnail)$|^group \d+$|\b(archive|old|scratch|unused|components?|styles?|style guide|design system|tokens?|colou?rs?|typography|icons?|assets?|playground)\b/i;
+const SKIP_PAGE = /\b(archive|old|scratch|playground)\b/i;
 
-/** Top-level frames (including frames inside top-level sections), in reading order. */
+const isScreen = (f) => !SKIP_NAME.test(f.name);
+
+/**
+ * Top-level frames (including frames inside top-level sections), in reading
+ * order, from the page that holds the most product screens. A file whose first
+ * page is a style guide or cover still finds its screens on a later page.
+ */
 export function topLevelFrames(file) {
-  const frames = [];
+  let best = { frames: [], screens: -1 };
   for (const page of file.document.children ?? []) {
-    if (/archive|old|scratch|playground/i.test(page.name)) continue;
+    if (SKIP_PAGE.test(page.name)) continue;
+    const frames = [];
     for (const node of page.children ?? []) {
+      if (node.type === "SECTION" && SKIP_NAME.test(node.name)) continue;
       const candidates = node.type === "SECTION" ? node.children ?? [] : [node];
       for (const n of candidates) {
         if (!FRAME_TYPES.has(n.type) || n.visible === false || !n.absoluteBoundingBox) continue;
@@ -172,27 +184,39 @@ export function topLevelFrames(file) {
         frames.push({ id: n.id, name: n.name, page: page.name, x, y, width, height });
       }
     }
-    if (frames.length) break; // use the first page that has real frames
+    const screens = frames.filter(isScreen).length;
+    if (frames.length && screens > best.screens) best = { frames, screens };
   }
   // Reading order: rows top to bottom (100px tolerance), then left to right.
-  return frames.sort((a, b) => (Math.abs(a.y - b.y) > 100 ? a.y - b.y : a.x - b.x));
+  return best.frames.sort((a, b) => (Math.abs(a.y - b.y) > 100 ? a.y - b.y : a.x - b.x));
 }
 
 /**
  * Choose which frames become cover, hero and step-1..4.
- * Frames named "cover"/"thumbnail" or "hero" win their slot; otherwise the
- * first frames in reading order are used. Phone-sized (portrait) frames are
- * grouped later into a collage so they read well in wide slots.
+ * Frames named "cover"/"thumbnail" or "hero" win their slot. Otherwise the
+ * steps are spread evenly across the distinct screens (one per screen name),
+ * so a long flow shows its range instead of four near-identical screens, and
+ * the cover and hero are collages of those steps.
  */
 export function pickFrames(frames, maxSteps = 4) {
   const named = (re) => frames.find((f) => re.test(f.name));
   const coverFrame = named(/^(cover|thumbnail)$/i);
   const heroFrame = named(/^hero$/i);
-  const screens = frames.filter((f) => f !== coverFrame && f !== heroFrame && !SKIP_NAME.test(f.name));
-  const steps = screens.slice(0, maxSteps);
+  const rest = frames.filter((f) => f !== coverFrame && f !== heroFrame);
+  const screens = rest.filter(isScreen).length ? rest.filter(isScreen) : rest;
+  const seen = new Set();
+  const distinct = screens.filter((f) => {
+    const key = f.name.toLowerCase().replace(/\(.*?\)/g, "").replace(/\s+/g, " ").trim();
+    return seen.has(key) ? false : seen.add(key);
+  });
+  const n = distinct.length;
+  const steps =
+    n <= maxSteps
+      ? distinct
+      : [...new Set(Array.from({ length: maxSteps }, (_, i) => Math.round((i * (n - 1)) / (maxSteps - 1))))].map((i) => distinct[i]);
   return {
-    cover: coverFrame ? [coverFrame] : screens.slice(0, 3),
-    hero: heroFrame ? [heroFrame] : screens.slice(0, 4),
+    cover: coverFrame ? [coverFrame] : steps.slice(0, 3),
+    hero: heroFrame ? [heroFrame] : steps.slice(0, 4),
     steps,
   };
 }
