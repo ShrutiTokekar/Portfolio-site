@@ -103,7 +103,7 @@ test("parseIds accepts bare numbers and pasted Figma URLs", () => {
     ["1496547227162062743"]
   );
   assert.deepEqual(parseIds(" 123 , https://www.figma.com/files/team/456/recents ", "team"), ["123", "456"]);
-  assert.deepEqual(parseIds("https://www.figma.com/files/project/789/Team-project", "project"), ["789"]);
+  assert.deepEqual(parseIds("https://www.figma.com/files/project/789/Team-project", "folder"), ["789"]);
   assert.deepEqual(parseIds("", "team"), []);
   assert.deepEqual(parseIds("not-an-id", "team"), []);
 });
