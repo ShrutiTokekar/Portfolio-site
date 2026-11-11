@@ -2,7 +2,7 @@
   {
     "repo": "ShrutiTokekar/Portfolio",
     "name": "Portfolio",
-    "description": "Developed a personal portfolio website to showcase projects, skills, and resume in a visually appealing and user-friendly layout. The website serves as a professional online presence, allowing potential employers to learn more about my work and skills.",
+    "description": "A multi-page static portfolio site with an introduction, biography, resume and current class schedule. Built with plain HTML, CSS and JavaScript using a responsive layout and simple cross-page navigation.",
     "techStack": [
       "HTML",
       "CSS",
