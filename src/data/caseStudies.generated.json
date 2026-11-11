@@ -1,1 +1,183 @@
-[]
+[
+  {
+    "slug": "uber-holiday-redesign",
+    "title": "Uber Holiday Redesign",
+    "subtitle": "Ride-hailing App",
+    "category": "UI/UX",
+    "year": "2026",
+    "status": "",
+    "summary": "A holiday-season redesign of the Uber app for class, adding Party Pass, group gatherings, airport pickups with miles, and gifting.",
+    "role": "UX/UI designer (style guide, user flow, hi-fi screens)",
+    "timeline": "",
+    "tools": [
+      "Figma",
+      "FigJam"
+    ],
+    "toolsFull": "Figma, FigJam",
+    "live": "",
+    "github": "",
+    "figma": "https://www.figma.com/design/AyY62guxAG6Bl3Tend8Xwo?node-id=0-1",
+    "prototype": "",
+    "palette": {
+      "bg": "#F3F3F3",
+      "surface": "#FFFFFF",
+      "accent": "#C54B62",
+      "ink": "#000000"
+    },
+    "designSystem": {
+      "colors": [
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Graphite",
+          "hex": "#5E5E5E"
+        },
+        {
+          "name": "Cranberry",
+          "hex": "#C54B62"
+        },
+        {
+          "name": "Gingerbread",
+          "hex": "#E8C88A"
+        },
+        {
+          "name": "Frost",
+          "hex": "#84B3D4"
+        },
+        {
+          "name": "Winter Navy",
+          "hex": "#2F5F8A"
+        },
+        {
+          "name": "Plum",
+          "hex": "#8A5FAD"
+        },
+        {
+          "name": "Mint",
+          "hex": "#CDECE8"
+        },
+        {
+          "name": "Burnt Orange",
+          "hex": "#C2410C"
+        },
+        {
+          "name": "Snow Grey",
+          "hex": "#F3F3F3"
+        },
+        {
+          "name": "Mulled Wine",
+          "hex": "#4A0E1B"
+        }
+      ],
+      "fonts": [
+        {
+          "name": "DM Sans",
+          "role": "Headings",
+          "family": "'DM Sans', system-ui, sans-serif"
+        },
+        {
+          "name": "Inter",
+          "role": "Body",
+          "family": "'Inter', system-ui, sans-serif"
+        }
+      ],
+      "googleFonts": "DM+Sans&family=Inter"
+    },
+    "overview": {
+      "heading": "Holiday rides are group plans, not solo trips.",
+      "body": "Over the holidays, one person often ends up getting everyone else home or to the table. This class project (AMDE 447) redesigns Uber around that: a host can fund rides for party guests, coordinate pickups for a gathering, and handle airport arrivals, without a group chat holding it all together."
+    },
+    "processLabel": "The process",
+    "processHeading": "From flows to finished screens",
+    "process": [
+      {
+        "label": "User flow",
+        "text": "Party Pass: the host sets a ride budget and shares a code, and guests scan it to request rides the host can track. If the pass has expired, the host can reopen or close it. If a fare is over budget, they can raise the budget or book a shared ride with another guest.",
+        "chips": [
+          "Party Pass",
+          "Ride budget",
+          "Expired pass",
+          "Over budget",
+          "Rideshare"
+        ]
+      },
+      {
+        "label": "User flow",
+        "text": "Holiday gathering: the host sets a destination and arrive-by time, adds guests and pickups, and a smart schedule checks for delays like a late flight before re-planning. Then the host either pays or splits the cost with people sharing a car, confirms, and tracks every ride.",
+        "chips": [
+          "Gathering",
+          "Smart schedule",
+          "Flight delay",
+          "Split pay",
+          "Host pays"
+        ]
+      },
+      {
+        "label": "Welcome motion",
+        "text": "A seasonal launch screen: the Uber wordmark over a night sky with falling snow, and Santa's sleigh kicking up powder across the hills."
+      },
+      {
+        "label": "Gathering",
+        "text": "The host's view of Monica's Thanksgiving: party name, location, and a guest list with a status pill for each person, from Checked in to Needs check-in to At Home.",
+        "chips": [
+          "Guest status",
+          "Live rides"
+        ]
+      },
+      {
+        "label": "Expired deal",
+        "text": "When HOLIDAY20 has expired, the rider gets a clear warning and a list of deals that still apply. The ones that don't fit this ride are greyed out with the reason, and paying the regular fare is always an option.",
+        "chips": [
+          "Error recovery",
+          "Coupons"
+        ]
+      },
+      {
+        "label": "Airport pickup",
+        "text": "The last, optional step of an airport pickup: pick an airline program, enter a member number, and see an estimate of the miles this ride will earn. Skip for now stays visible.",
+        "chips": [
+          "Frequent flyer",
+          "Optional step"
+        ]
+      }
+    ],
+    "decision": {
+      "title": "Every dead end gets a way out.",
+      "body": "Holiday plans break: codes expire, fares go over budget, flights land late. I mapped each of those as a recovery path in the flows first, so the screens always offer the next move, like reopening a pass, sharing a ride, re-planning a pickup or picking another deal, instead of just showing an error."
+    },
+    "outcome": "A style guide, two FigJam user flows for Party Pass and holiday gatherings, and high-fidelity Figma screens for the welcome motion, gathering, deals and airport pickup.",
+    "learned": "",
+    "next": "",
+    "generatedFrom": {
+      "figmaKey": "AyY62guxAG6Bl3Tend8Xwo",
+      "frames": {
+        "cover": [
+          "2044:612",
+          "2115:1463",
+          "2113:996"
+        ],
+        "hero": [
+          "2044:612",
+          "2115:1463",
+          "2113:996",
+          "2113:925"
+        ],
+        "steps": [
+          "2044:612",
+          "2115:1463",
+          "2113:996",
+          "2113:925"
+        ]
+      },
+      "flows": [
+        "N4nn09NQONWi3etl1GoHca"
+      ]
+    }
+  }
+]
