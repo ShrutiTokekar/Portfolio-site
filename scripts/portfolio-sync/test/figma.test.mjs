@@ -94,3 +94,16 @@ test("inspectNodes reads FigJam sticky and shape text", () => {
   ] }]);
   assert.deepEqual(out.texts, ["User opens app", "Logged in?", "yes"]);
 });
+
+import { parseIds } from "../lib/figma.mjs";
+
+test("parseIds accepts bare numbers and pasted Figma URLs", () => {
+  assert.deepEqual(
+    parseIds("https://www.figma.com/files/team/1496547227162062743/all-folders?fuid=1496547225132143400", "team"),
+    ["1496547227162062743"]
+  );
+  assert.deepEqual(parseIds(" 123 , https://www.figma.com/files/team/456/recents ", "team"), ["123", "456"]);
+  assert.deepEqual(parseIds("https://www.figma.com/files/project/789/Team-project", "project"), ["789"]);
+  assert.deepEqual(parseIds("", "team"), []);
+  assert.deepEqual(parseIds("not-an-id", "team"), []);
+});
